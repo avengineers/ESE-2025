@@ -1,16 +1,13 @@
-# Slides Template
+# Our contribution to Embedded Software Engineering Kongress (ESE) 2025
 
-This template provides a basic structure for creating beautiful presentations using [reveal.js](https://revealjs.com/).
-
-See the [reveal.js documentation](https://revealjs.com/) for more information.
+https://ese-kongress.de/
 
 ## How to use?
 
-* Create a new repository using this template.
 * Clone the respective repository including submodules:
 
   ```powershell
-  git clone --recurse-submodules <repoUrl>
+  git clone --recurse-submodules https://github.com/avengineers/ESE-2025.git
   ```
 
 * For editing the slides I recommend using [Visual Studio Code](https://code.visualstudio.com/).
