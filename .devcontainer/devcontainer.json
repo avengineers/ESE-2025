@@ -51,7 +51,11 @@
     }
   },
 
-  "postCreateCommand": "npm install -g reveal-md",
+  "mounts": [
+    "source=${localEnv:HOME}/.ssh,target=/home/node/.ssh,type=bind,consistency=cached"
+  ],
+
+  "postCreateCommand": "npm install -g npm@11.6.4 && npm install -g reveal-md && chmod 700 ~/.ssh && chmod 600 ~/.ssh/* 2>/dev/null || true",
 
   "remoteUser": "node"
 }
