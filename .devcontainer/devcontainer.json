@@ -3,16 +3,25 @@
   "image": "mcr.microsoft.com/devcontainers/javascript-node:1-20-bookworm",
 
   "features": {
-    "ghcr.io/devcontainers/features/git:1": {}
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/anthropics/devcontainer-features/claude-code:1": {}
   },
 
   "customizations": {
     "vscode": {
       "extensions": [
+        "anthropic.claude-code",
         "evilz.vscode-reveal",
         "yzhang.markdown-all-in-one",
         "DavidAnson.vscode-markdownlint",
-        "esbenp.prettier-vscode"
+        "esbenp.prettier-vscode",
+        "waderyan.gitblame",
+        "streetsidesoftware.code-spell-checker",
+        "mushan.vscode-paste-image",
+        "sandcastle.vscode-open",
+        "mhutchie.git-graph",
+        "felipecaputo.git-project-manager"
       ],
       "settings": {
         "editor.formatOnSave": true,
@@ -29,6 +38,7 @@
   },
 
   "forwardPorts": [8000, 1948],
+
   "portsAttributes": {
     "8000": {
       "label": "Reveal.js Server",
