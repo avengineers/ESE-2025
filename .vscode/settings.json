@@ -6,6 +6,7 @@
     "MD041": false,
     "MD045": false
   },
+  "peacock.remoteColor": "#42b883",
   "workbench.colorCustomizations": {
     "activityBar.activeBackground": "#65c89b",
     "activityBar.background": "#65c89b",
@@ -24,6 +25,5 @@
     "titleBar.activeForeground": "#15202b",
     "titleBar.inactiveBackground": "#42b88399",
     "titleBar.inactiveForeground": "#15202b99"
-  },
-  "peacock.remoteColor": "#42b883"
+  }
 }
