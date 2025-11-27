@@ -4,8 +4,7 @@
 
   "features": {
     "ghcr.io/devcontainers/features/git:1": {},
-    "ghcr.io/devcontainers/features/github-cli:1": {},
-    "ghcr.io/anthropics/devcontainer-features/claude-code:1": {}
+    "ghcr.io/devcontainers/features/github-cli:1": {}
   },
 
   "customizations": {
@@ -52,7 +51,7 @@
     "source=${localEnv:HOME}/.ssh,target=/home/node/.ssh,type=bind,consistency=cached"
   ],
 
-  "postCreateCommand": "npm install && chmod 700 ~/.ssh && chmod 600 ~/.ssh/* 2>/dev/null || true",
+  "postCreateCommand": "bash scripts/postCreate.sh",
 
   "remoteUser": "node"
 }
