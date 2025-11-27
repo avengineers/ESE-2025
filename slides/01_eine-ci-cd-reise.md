@@ -1,4 +1,4 @@
-## Eine CI Reise wow why
+## Eine CI Reise
 
 oder
 

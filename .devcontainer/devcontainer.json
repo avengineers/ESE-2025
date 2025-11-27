@@ -39,16 +39,12 @@
     }
   },
 
-  "forwardPorts": [8000, 1948],
+  "forwardPorts": [3000],
 
   "portsAttributes": {
-    "8000": {
-      "label": "Reveal.js Server",
+    "3000": {
+      "label": "Vite Dev Server",
       "onAutoForward": "notify"
-    },
-    "1948": {
-      "label": "Reveal.js Live Reload",
-      "onAutoForward": "silent"
     }
   },
 
@@ -56,7 +52,7 @@
     "source=${localEnv:HOME}/.ssh,target=/home/node/.ssh,type=bind,consistency=cached"
   ],
 
-  "postCreateCommand": "npm install -g npm@11.6.4 && npm install -g reveal-md && chmod 700 ~/.ssh && chmod 600 ~/.ssh/* 2>/dev/null || true",
+  "postCreateCommand": "npm install && chmod 700 ~/.ssh && chmod 600 ~/.ssh/* 2>/dev/null || true",
 
   "remoteUser": "node"
 }
