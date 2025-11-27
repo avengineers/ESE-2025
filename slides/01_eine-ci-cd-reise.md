@@ -1,9 +1,9 @@
-## Eine CI Reise
+## A CI Journey
 
-oder
+or
 
-Weniger Pipelines, Mehr Spaß!
+Less Pipelines, More Happy Developers!
 
 Note:
 
-Hallo zusammen und willkommen zu meinem Vortrag über CI/CD. Ich möchte euch heute mitnehmen auf eine Reise, die ich vor mehr als 10 Jahren begonnen habe. Eine Reise, die mich durch viele verschiedene Projekte und Firmen geführt hat. Eine Reise, die mich gelehrt hat, dass es nicht nur um Automatisierung geht, sondern auch um die Freude an der Entwicklung von Software. (Anekdote: Zurück in die Zukunft)
+Hello everyone and welcome to my talk about CI/CD. Today I'd like to take you on a journey that I started more than 10 years ago. A journey that has led me through many different projects and companies. A journey that taught me that it's not just about automation, but also about the joy of developing software. (Anecdote: Back to the Future)

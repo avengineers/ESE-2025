@@ -1,88 +1,88 @@
-## Wir müssen was ändern!
+## We need to change something!
 
-### Aber was?
+### But what?
 
 Automotive Software Factory (2011-2021) <!-- .element: class="fragment" -->
 
 Note:
 
-Tja, wir müssen was ändern! Aber was?
+Well, we need to change something! But what?
 
 *click*
 
-Hier startet unsere CI Reise eigentlich erst so richtig.
+This is where our CI journey really begins.
 
-Nämlich mit dem Aufbau unserer Automotive Software Factory.
+Namely with the development of our Automotive Software Factory.
 
-Der Name kam erst später, aber Ideen gab es genug.
+The name came later, but there were plenty of ideas.
 
 --
 
-SW Änderungen nur bis 12 Uhr mittags, danach Bugfixing und Testen beim Fahrversuch.
+SW changes only until noon, then bugfixing and testing in driving tests.
 
 ![](images/sad-developer.png) <!-- .element: width="40%"  class="fragment" data-fragment-index="1" -->
 
 Note:
 
-Eine Idee war ...
+One idea was ...
 
-Ihr könnt euch vorstellen, wie begeistert die Entwickler waren.
+You can imagine how thrilled the developers were.
 
 *click*
 
-Zumal sich die Frage stellt, was 12 Uhr mittags bei einem internationalen Konzern ist, der weltweit verteilt arbeitet.
+Especially considering the question of what noon means at an international corporation working worldwide.
 
-Diese Idee hat nicht wirklich funktioniert.
+This idea didn't really work.
 
-Was kann man sonst noch machen?
+What else can you do?
 
 --
 
-## Unit Testing ist ein guter Anfang.
+## Unit Testing is a good start.
 
-- Mit eigenem Framework basierend auf CUnit <!-- .element: class="fragment" -->
-- Automatische Generierung von Mockups <!-- .element: class="fragment" -->
+- With our own framework based on CUnit <!-- .element: class="fragment" -->
+- Automatic generation of mockups <!-- .element: class="fragment" -->
 - Test Driven Development (TDD) <!-- .element: class="fragment" -->
-- Nightly Tests auf Jenkins (und Hudson!) <!-- .element: class="fragment" -->
+- Nightly tests on Jenkins (and Hudson!) <!-- .element: class="fragment" -->
 
 Note:
 
-Klar, wenn man keine Unit Tests hat, dann ist das immer ein guter Anfang.
+Sure, if you don't have unit tests, that's always a good start.
 
-Allerdings war das gar nicht so einfach, unseren Code testbar zu machen.
-
-*click*
-
-Wir haben uns ein eigenes Framework gebaut, basierend auf CUnit.
+However, it wasn't that easy to make our code testable.
 
 *click*
 
-Die automatische Generierung von Mockups war ein großer Erfolg damals.
-
-Das händische Schreiben von Mockups (gerade in Zeiten von Autosar) war einfach zu aufwändig und eine große Hürde für die Entwickler.
+We built our own framework based on CUnit.
 
 *click*
 
-Wir von Anfang an versucht, Test Driven Development basierend auf den Anforderungen zu etablieren.
+The automatic generation of mockups was a big success back then.
+
+Writing mockups manually (especially in the era of Autosar) was simply too time-consuming and a major hurdle for developers.
 
 *click*
 
-Und klar, wenn man Unit Tests hat, will man die auch automatisiert ausführen.
+We tried from the beginning to establish Test Driven Development based on requirements.
+
+*click*
+
+And of course, if you have unit tests, you want to run them automatically.
 
 --
 
-## Continuous Integration klingt auch nett.
+## Continuous Integration sounds nice too.
 
-- Gerrit und Jenkins für Tools <!-- .element: class="fragment" -->
-- Feature-based Testing mittels Commit-Kommentar <!-- .element: class="fragment" -->
-- SW Entwicklung weiterhin auf RCS. <!-- .element: class="fragment" -->
-- CI mit RCS? Yes, we can! <!-- .element: class="fragment" -->
+- Gerrit and Jenkins for tools <!-- .element: class="fragment" -->
+- Feature-based testing via commit comments <!-- .element: class="fragment" -->
+- SW development still on RCS. <!-- .element: class="fragment" -->
+- CI with RCS? Yes, we can! <!-- .element: class="fragment" -->
 
 Note:
 
-Ja gut, wir haben einen Jenkins und ein paar Unit Tests.
+Well, we have a Jenkins and some unit tests.
 
-Lasst uns doch mal CI machen!
+Let's do CI!
 
 *click*
 
@@ -96,40 +96,40 @@ Lasst uns doch mal CI machen!
 
 Note:
 
-Was? Kein Git? Ihr macht CI mit RCS?
+What? No Git? You're doing CI with RCS?
 
 *click*
 
-Sorry, aber dann gibt es keine Gnade!
+Sorry, but there's no mercy then!
 
-Ihr seid auf euch alleine gestellt!
+You're on your own!
 
-Und so war es auch. Wir sind nie von Nightly Builds weggekommen.
+And that's how it was. We never got away from nightly builds.
 
-Unsere CI Lösung lief parallel zu nightly builds.
+Our CI solution ran in parallel to nightly builds.
 
 --
 
-Was wir erschaffen wollten:
+What we wanted to create:
 
 ![](images/sw-factory.png) <!-- .element height="60%" width="60%" -->
 
 --
 
-Das Monster, dass dabei rauskam:
+The monster that came out of it:
 ![](images/jenkinstein.jpg) <!-- .element height="50%" width="50%" -->
 
 Note:
 
-Das Monster, dass dabei rauskam, war ein Jenkins, der alles konnte.
+The monster that came out of it was a Jenkins that could do everything.
 
-Der Jenkinstein.
+The Jenkinstein.
 
-Anstatt ein einheitliches Buildsystem incl. Pipeline zu haben, hatten wir eine Vielzahl von Jobs, die alle irgendwie zusammenhingen.
+Instead of having a unified build system including pipeline, we had a multitude of jobs that were all somehow connected.
 
-Wir missbrauchten Jenkins als Buildsystem, als Testsystem, als Deployment-System, als Monitoring-System.
+We abused Jenkins as a build system, as a test system, as a deployment system, as a monitoring system.
 
-All das, was unser Buildsystem nicht konnte, haben wir in Jenkins Pipelines gepackt.
+Everything our build system couldn't do, we packed into Jenkins pipelines.
 
 --
 
@@ -139,16 +139,16 @@ Jenkins School of Witchcraft and Wizardry
 
 Note:
 
-- Die Krux mit den Jenkins Pipelines
-  - Java-Entwickler, die einfach Java programmieren wollen
-  - Und es dann nicht dürfen!
-  - Viele Missverständnisse, was wo ausgeführt wird
-  - Keiner versteht mehr, wie die Pipeline funktioniert.
-  - Keiner kann debuggen.
-  - Keiner kann es nachvollziehen.
-  - Anti-Pattern von CI.
-- 2 Scrum Teams waren zu wenigstens 50% mit Maintenance ausgelastet.
-- Es ging die "Service Card" um.
+- The crux with Jenkins pipelines
+  - Java developers who just want to program Java
+  - And then aren't allowed to!
+  - Many misunderstandings about what runs where
+  - Nobody understands how the pipeline works anymore.
+  - Nobody can debug.
+  - Nobody can follow it.
+  - Anti-pattern of CI.
+- 2 Scrum teams were at least 50% occupied with maintenance.
+- The "Service Card" was being passed around.
 
 --
 

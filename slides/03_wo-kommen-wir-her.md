@@ -1,128 +1,128 @@
-## Wo kommen wir her?
+## Where do we come from?
 
 Back to 2005 <!-- .element: class="fragment" data-fragment-index="1" -->
 
-![18 Jahre zurück](images/back_to_the_past.png) <!-- .element width="50%" class="fragment" data-fragment-index="1" -->
+![18 years back](images/back_to_the_past.png) <!-- .element width="50%" class="fragment" data-fragment-index="1" -->
 
 Note:
 
-Wo kommen wir eigentlich her?
+Where do we actually come from?
 
 *click*
 
-Dazu geht es etwas zurück in die Vergangenheit, genauer gesagt ins Jahr 2005.
+For that, we need to go back a bit into the past, specifically to the year 2005.
 
-Da hab ich als Neuling in der Automobilindustrie angefangen.
+That's when I started as a newcomer in the automotive industry.
 
 --
 
-## Die Automobilindustrie
+## The Automotive Industry
 
-- Spannende Produkte <!-- .element: class="fragment" -->
-- Ständig neue Anforderungen <!-- .element: class="fragment" -->
-- Gut bezahlte Jobs <!-- .element: class="fragment" -->
-- Das Paradies für SW Entwickler <!-- .element: class="fragment" -->
+- Exciting products <!-- .element: class="fragment" -->
+- Constantly new requirements <!-- .element: class="fragment" -->
+- Well-paid jobs <!-- .element: class="fragment" -->
+- Paradise for SW developers <!-- .element: class="fragment" -->
 
 Note:
 
-Wie war das damals in der Automobilindustrie?
+What was it like back then in the automotive industry?
 
-Eigentlich genauso wie heute.
-
-*click*
-
-Spannende Produkte: Bremsensteuergeräte, ESP, ABS, ACC, ...
+Actually, pretty much the same as today.
 
 *click*
 
-Ständig neue Anforderungen, da viele Kunden, die sich von der Konkurrenz abheben wollen.
+Exciting products: brake control units, ESP, ABS, ACC, ...
 
 *click*
 
-Die Jobs waren gut bezahlt.
+Constantly new requirements, as many customers want to stand out from the competition.
 
 *click*
 
-Eigentlich das Paradies für SW Entwickler.
+The jobs were well paid.
+
+*click*
+
+Actually paradise for SW developers.
 
 --
 
-## Der Job
+## The Job
 
-- SW-Entwicklung für Bremsensteuergeräte <!-- .element: class="fragment" -->
-- Embedded C? Das hatten wir doch an der Uni! <!-- .element: class="fragment" -->
-- Es ist dein Code, aber verändere bloß nichts! <!-- .element: class="fragment" -->
+- SW development for brake control units <!-- .element: class="fragment" -->
+- Embedded C? We had that at university! <!-- .element: class="fragment" -->
+- It's your code, but don't you dare change anything! <!-- .element: class="fragment" -->
 - Always remember: don't break the build! <!-- .element: class="fragment" -->
-- Dem Ingenieur ist nix zu schwör! <!-- .element: class="fragment" -->
+- Nothing is too difficult for an engineer! <!-- .element: class="fragment" -->
 
 Note:
 
-Und der Job?
+And the job?
 
 *click*
 
-Klar, wir hacken Embedded C für Bremsensteuergeräte.
+Sure, we're coding Embedded C for brake control units.
 
 *click*
 
-Kein Problem, das hatten wir doch an der Uni.
+No problem, we had that at university.
 
 *click*
 
-Hier kam der erste Dämpfer.
+Here came the first damper.
 
-Man bekam Verantwortung für einen Teil des Codes, aber verändern sollte man ihn möglichst nicht.
-
-*click*
-
-Warum? Don't break the build!
+You got responsibility for a part of the code, but ideally you shouldn't change it.
 
 *click*
 
-Klang schwierig, aber wir hatten ja an der Uni gelernt: Dem Ingenieur ist nix zu schwör!
+Why? Don't break the build!
+
+*click*
+
+Sounded difficult, but we had learned at university: Nothing is too difficult for an engineer!
 --
 
-## Die Ausgangslage
+## The Starting Point
 
-- Keine Unit Tests <!-- .element: class="fragment" -->
-- Ein bisschen SIL und HIL <!-- .element: class="fragment" -->
-- Ganz viel Fahrversuch <!-- .element: class="fragment" -->
-- Code Reuse über alle Projekte <!-- .element: class="fragment" -->
-- Mehrere 100 Entwickler weltweit an einer Codebasis <!-- .element: class="fragment" -->
+- No unit tests <!-- .element: class="fragment" -->
+- A bit of SIL and HIL <!-- .element: class="fragment" -->
+- Lots of driving tests <!-- .element: class="fragment" -->
+- Code reuse across all projects <!-- .element: class="fragment" -->
+- Several hundred developers worldwide on one codebase <!-- .element: class="fragment" -->
 
 Note:
 
-Die Ausgangslage?
+The starting point?
 
 *click*
 
-Oha, keine Unit Tests.
+Oops, no unit tests.
 
-Keine einige Zeile Testcode im Repository.
+Not a single line of test code in the repository.
 
-Klar, wo testet man Bremsen? Im Auto.
-
-*click*
-
-Gut, es wurde ein bisschen SIL und HIL gemacht.
+Sure, where do you test brakes? In the car.
 
 *click*
 
-Aber das meiste wurde im Fahrversuch getestet.
-
-Viele Features waren also irgendwann, irgendwo in irgendeinem Projekt getestet.
-
-Daher das Motto: besser nichts ändern.
+Well, some SIL and HIL was done.
 
 *click*
 
-Aber wie soll das gehen, wenn der Code über alle Projekte geshared ist,
+But most of it was tested in driving tests.
 
-alle Kunden mit neuen Anforderungen um die Ecke kommen ..
+So many features were tested at some point, somewhere in some project.
+
+Hence the motto: better not change anything.
 
 *click*
 
-und mehrere 100 Entwickler weltweit an einer Codebasis arbeiten?
+But how is that supposed to work when the code is shared across all projects,
+
+all customers come around the corner with new requirements..
+
+*click*
+
+and several hundred developers worldwide are working on one codebase?
 
 
 --
@@ -147,29 +147,29 @@ Note:
 
 ![](images/kind_im_brunnen.jpg) <!-- .element: width="40%" class="fragment" data-fragment-index="1" -->
 
-Continuous "Kind im Brunnen" <!-- .element: class="fragment" data-fragment-index="1" -->
+Continuous "Child in the Well" <!-- .element: class="fragment" data-fragment-index="1" -->
 
 Note:
 
-Wenn mich heute jemand fragt, was Continuous Integration ist, dann erinnere ich mich gerne an diese Zeit zurück.
+When someone asks me today what Continuous Integration is, I like to remember that time.
 
-Daran, was Continuous Integration überhaupt nicht ist.
+About what Continuous Integration is absolutely NOT.
 
-Irgendwann ist mir ein treffender Name für die Situation damals eingefallen:
+At some point, I came up with a fitting name for the situation back then:
 
 *click*
 
-Continuous "Kind im Brunnen".
+Continuous "Child in the Well".
 
-Was heißt das genau?
+What does that mean exactly?
 
-1. Höchstes Qualitätskriterium: SW linkbar.
-2. Irgendein Projekt ist immer rot (Compile- oder Link-Fehler)
-3. Keine Testautomatisierung
-4. Keine Unittests
-5. Entwickler sind böse, die bauen Bugs in den Code.
+1. Highest quality criterion: SW linkable.
+2. Some project is always red (compile or link errors)
+3. No test automation
+4. No unit tests
+5. Developers are evil, they build bugs into the code.
 
-Und wie fühlte man sich als Entwickler dabei?
+And how did you feel as a developer?
 
 *click*
 
@@ -189,8 +189,8 @@ Note:
 
 --
 
-![Tal der Tränen](images/tal_der_traenen.jpg) <!-- .element width="65%" -->
+![Valley of Tears](images/tal_der_traenen.jpg) <!-- .element width="65%" -->
 
 Note:
 
-Wie im Tal der Tränen.
+Like in the valley of tears.

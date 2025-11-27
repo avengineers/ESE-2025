@@ -1,4 +1,4 @@
-## Wer sind wir?
+## Who are we?
 
 <div>
 <img src="images/karsten.jpg">
@@ -14,22 +14,22 @@
 
 Note:
 
-Okay, wer sind wir eigentlich?
+Okay, so who are we actually?
 
-Matthias hat einige Jahre in der Automobilindustrie als Softwareintegrator, Softwareentwickler und DevOps Engineer gearbeitet.
+Matthias worked for several years in the automotive industry as a software integrator, software developer, and DevOps engineer.
 
-Dabei ging es immer um sicherheitsrelevante Funktionen wie Bremssysteme oder Batteriemanagementsysteme.
+He always worked on safety-critical functions like braking systems or battery management systems.
 
-Wir haben schon vor gut 8 Jahren bei Continental zusammengearbeitet und sind dann gleichzeitig zu Marquardt gewechselt.
+We worked together at Continental about 8 years ago and then moved to Marquardt at the same time.
 
-Dort haben wir gemeinsam an unserer Lösung für Software-Produktlinien gearbeitet, um die es heute nur am Rande gehen wird.
+There we worked together on our solution for Software Product Line Engineering, which will only be touched on peripherally today.
 
-Mittlerweile arbeitet er als DevOps Engineer und Testautomatisierer bei der Qytera GmbH.
+He now works as a DevOps Engineer and test automation specialist at Qytera GmbH.
 
-Ich selbst bin seit über 18 Jahren als Softwareentwickler im Automobilbereich unterwegs.
+I myself have been working as a software developer in the automotive sector for over 18 years.
 
-Von Ada, Embedded C, C++, Perl, Tcl, Python über die Entwicklung von Dev Tools bis hin zu Jenkins Pipelines hab ich schon eine Menge gesehen und gemacht.
+From Ada, Embedded C, C++, Perl, Tcl, Python, to developing dev tools and Jenkins pipelines - I've seen and done a lot.
 
-Aktuell arbeite ich als Platform Engineer im Rhein-Main-Team der Marquardt GmbH.
+Currently, I work as a Platform Engineer in the Rhine-Main team at Marquardt GmbH.
 
-Dort geht es um Software-Produktlinien, interne Developer Plattformen, Automatisierung und CI/CD.
+There it's all about Software Product Lines, internal developer platforms, automation, and CI/CD.

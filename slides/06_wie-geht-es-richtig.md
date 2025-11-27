@@ -1,24 +1,24 @@
-## Wie geht es besser?
+## How to do it better?
 
-* Ein Meta-Buildsystem (z.B.: CMake)  <!-- .element: class="fragment" -->
-* Ein richtig schnelles Buildsystem für C/C++ (ninja) <!-- .element: class="fragment" -->
-* Mittels Bootstrapping alle Dependencies <!-- .element: class="fragment" -->
-* Andere Git Repos via Cmake's Fetch_Content() <!-- .element: class="fragment" -->
-* Pipeline als Code im Repo <!-- .element: class="fragment" -->
+* A meta-build system (e.g.: CMake)  <!-- .element: class="fragment" -->
+* A really fast build system for C/C++ (ninja) <!-- .element: class="fragment" -->
+* All dependencies via bootstrapping <!-- .element: class="fragment" -->
+* Other Git repos via CMake's Fetch_Content() <!-- .element: class="fragment" -->
+* Pipeline as code in the repo <!-- .element: class="fragment" -->
 
 Note:
 
-Okay, wie geht es denn nun besser?
+Okay, so how do we do it better?
 
 *click*
 
-Naja, auf jeden Fall braucht man ein Buildsystemgenerator, der die Abhängigkeiten auflöst und die Buildfiles generiert.
+Well, you definitely need a build system generator that resolves dependencies and generates build files.
 
-CMake ist da aus unserer Sicht ein guter Kandidat.
+CMake is a good candidate from our perspective.
 
-Man braucht schon irgendeine Art von Pipeline, aber nur als Steuerung des Build Systems.
+You do need some kind of pipeline, but only to control the build system.
 
-Kein CI Only Code
+No CI-only code
 
 --
 
@@ -41,17 +41,17 @@ Kein CI Only Code
 
 ## Jenkins
 
-* macht NICHTS anders als der User lokal <!-- .element: class="fragment" -->
-* Build ist ein One-Liner <!-- .element: class="fragment" -->
-* Automatische Joberzeugung für Branches und Pull Requests <!-- .element: class="fragment" -->
-* Wenige Plugins zum Anzeigen von Ergebnissen <!-- .element: class="fragment" -->
-* Unterstützung der Entwickler bei Analyse von Fehlern <!-- .element: class="fragment" -->
+* does NOTHING different than the user locally <!-- .element: class="fragment" -->
+* Build is a one-liner <!-- .element: class="fragment" -->
+* Automatic job creation for branches and pull requests <!-- .element: class="fragment" -->
+* Few plugins to display results <!-- .element: class="fragment" -->
+* Supporting developers in analyzing errors <!-- .element: class="fragment" -->
 
 Note:
 
 - https://www.jenkins.io/doc/book/pipeline/pipeline-best-practices/
-- Minimaler Jenkinsfile plus Organisation Folder Plugin (Bitbucket, GitHub)
-- Ein einziger Konfigfile (config.xml der Orga)
+- Minimal Jenkinsfile plus Organization Folder Plugin (Bitbucket, GitHub)
+- A single config file (config.xml of the org)
 
 --
 
@@ -72,7 +72,7 @@ Note:
 
 --
 
-![Gipfel der Freude](images/gipfel_der_freude.jpg) <!-- .element height="65%" width="65%" -->
+![Peak of Joy](images/gipfel_der_freude.jpg) <!-- .element height="65%" width="65%" -->
 
 
 ---

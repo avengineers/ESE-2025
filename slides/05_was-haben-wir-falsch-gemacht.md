@@ -1,8 +1,8 @@
-## Was haben wir eigentlich alles falsch gemacht?
+## What did we actually do wrong?
 
 Note:
 
-Zunächst lief alles gut ...
+At first, everything went well ...
 
 --
 
@@ -12,9 +12,9 @@ Zunächst lief alles gut ...
 
 Note:
 
-Klar, wenn man mit Jenkins startet, geht es mit einfachen freestyle jobs los.
+Sure, when you start with Jenkins, you begin with simple freestyle jobs.
 
-Einfach nur bauen.
+Just building.
 
 --
 
@@ -27,9 +27,9 @@ Einfach nur bauen.
 
 Note:
 
-- dann passiert plötzlich doch ein bisschen mehr
-- nach und nach müssen Tools zusammengeklebt werden
-- Anbindung ans SCM System
+- then suddenly a bit more happens
+- gradually tools need to be glued together
+- Connection to the SCM system
 - Reporting
 
 --
@@ -43,22 +43,22 @@ Note:
 ![](images/pipeline-lotr.png) <!-- .element width="65%" -->
 
 Note:
-Höher, schneller, weiter: Eine Pipeline, um sie alle zu knechten.
+Higher, faster, further: One pipeline to rule them all.
 
 --
 
 ## Law of the Instrument
 
-- Pipeline als Ersatzbuildsystem <!-- .element: class="fragment" -->
-- Buildlogik in Pipelines (10000e Zeilen Groovy DSL) <!-- .element: class="fragment" -->
-- Ausreichend? Nein! Shared Libraries und Plugins gibt es ja auch noch ... <!-- .element: class="fragment" -->
-- Nicht nachvollziehbare CI Ergebnisse <!-- .element: class="fragment" -->
-- Worst case: getrennte Repos für Produkt Source Code und CI Pipeline <!-- .element: class="fragment" -->
+- Pipeline as replacement build system <!-- .element: class="fragment" -->
+- Build logic in pipelines (10,000s of lines of Groovy DSL) <!-- .element: class="fragment" -->
+- Sufficient? No! Shared libraries and plugins still exist ... <!-- .element: class="fragment" -->
+- Non-reproducible CI results <!-- .element: class="fragment" -->
+- Worst case: separate repos for product source code and CI pipeline <!-- .element: class="fragment" -->
 
 Note:
 
-- CI-System macht andere/mehr Sachen als die Buildumgebung.
-- Mit dem Hammer in der Hand sieht die Welt wie ein Haufen von Nägeln aus.
+- CI system does different/more things than the build environment.
+- With a hammer in hand, the world looks like a pile of nails.
 - Birmingham screwdriver
 
 --
