@@ -10,7 +10,7 @@ Hello everyone and welcome to my talk about CI/CD. Today I'd like to take you on
 
 ---
 
-## Who are we?
+### Who are we?
 
 <div>
 <img src="images/karsten.png">
@@ -50,7 +50,7 @@ He currently works as a platform architect in the Rhine-Main Team at Marquardt G
 
 ---
 
-## Where do we come from?
+### Where do we come from?
 
 Back to 2005 <!-- .element: class="fragment" data-fragment-index="1" -->
 
@@ -68,7 +68,7 @@ That's when I started as a newcomer in the automotive industry.
 
 --
 
-## The Automotive Industry
+### The Automotive Industry
 
 - Exciting products <!-- .element: class="fragment" -->
 - Constantly new requirements <!-- .element: class="fragment" -->
@@ -99,7 +99,7 @@ Actually paradise for SW developers.
 
 --
 
-## The Job
+### The Job
 
 - SW development for brake control units <!-- .element: class="fragment" -->
 - Embedded C? We had that at university! <!-- .element: class="fragment" -->
@@ -135,7 +135,7 @@ Sounded difficult, but we had learned at university: Nothing is too difficult fo
 
 --
 
-## The Starting Point
+### The Starting Point
 
 - Keine Unit Tests <!-- .element: class="fragment" -->
 - Kein CI, nur nightly builds <!-- .element: class="fragment" -->
@@ -181,7 +181,7 @@ and several hundred developers worldwide are working on one codebase?
 
 <!-- .slide: data-visibility="hidden" -->
 
-## The Tools
+### The Tools
 
 - MKS / PTC Integrity or "RCS on Steroids" <!-- .element: class="fragment" -->
 - GNU Make / MSYS in Java GUI on Windows 2000 <!-- .element: class="fragment" -->
@@ -196,7 +196,7 @@ Note:
 
 --
 
-## Continuous What?
+### Continuous What?
 
 ![](images/kind_im_brunnen.jpg) <!-- .element: width="40%" class="fragment" data-fragment-index="1" -->
 
@@ -228,9 +228,9 @@ _click_
 
 ---
 
-## We need to change something!
+### We need to change something!
 
-### But what? <!-- .element: class="fragment" -->
+But what? <!-- .element: class="fragment" -->
 
 Note:
 
@@ -340,13 +340,13 @@ Our CI solution ran in parallel to nightly builds.
 
 ### Our Dream: The Software Factory
 
-![](images/sw-factory.png) <!-- .element height="60%" width="60%" -->
+![](images/sw-factory.png) <!-- .element height="50%" width="50%" -->
 
 --
 
 ### Jenkins School of Witchcraft and Wizardry
 
-![](images/jenkins-magic.png) <!-- .element height="60%" width="60%" -->
+![](images/jenkins-magic.png) <!-- .element height="50%" width="50%" -->
 
 Note:
 
@@ -415,7 +415,7 @@ Everything our build system couldn't do, we packed into Jenkins pipelines.
 
 ---
 
-## What did we actually do wrong?
+### What did we actually do wrong?
 
 Note:
 
@@ -423,7 +423,7 @@ At first, everything went well ...
 
 --
 
-## Freestyle Happiness
+### Freestyle Happiness
 
 ![](images/freestyle-happiness.png) <!-- .element width="80%" -->
 
@@ -435,7 +435,7 @@ Just building.
 
 --
 
-## Freestyle Faith
+### Freestyle Faith
 
 <div style="position:relative; width:900px; height:600px; margin:0 auto;">
     <img src="images/freestyle-faith.png" style="position:absolute;top:0;left:0;" />
@@ -451,7 +451,7 @@ Note:
 
 --
 
-## Holy Moly Groovy Pipelines
+### Holy Moly Groovy Pipelines
 
 ![](images/holy-moly-pipelines.png) <!-- .element width="80%" -->
 
@@ -464,7 +464,7 @@ Higher, faster, further: One pipeline to rule them all.
 
 --
 
-## Law of the Instrument
+### Law of the Instrument
 
 - Pipeline as replacement build system <!-- .element: class="fragment" -->
 - Build logic in pipelines (10,000s of lines of Groovy DSL) <!-- .element: class="fragment" -->
@@ -480,13 +480,13 @@ Note:
 
 --
 
-## Continuous Complexity
+### Continuous Complexity
 
 ![](images/weight.png) <!-- .element width="60%" style="filter: invert(100%)" -->
 
 ---
 
-## How to do it better?
+### How to do it better?
 
 - A meta-build system (e.g.: CMake) <!-- .element: class="fragment" -->
 - A really fast build system for C/C++ (ninja) <!-- .element: class="fragment" -->
@@ -512,7 +512,7 @@ No CI-only code
 
 <!-- .slide: data-visibility="hidden" -->
 
-## SPLE Platform
+### SPLE Platform
 
 - VSCode plus CMake Tools
 - Configuration as Code
@@ -527,7 +527,7 @@ No CI-only code
 
 --
 
-## Jenkins
+### Jenkins
 
 - does NOTHING different than the user locally <!-- .element: class="fragment" -->
 - Build is a one-liner <!-- .element: class="fragment" -->
@@ -545,7 +545,7 @@ Note:
 
 <!-- .slide: data-visibility="hidden" -->
 
-## Reporting
+### Reporting
 
 - Less is more
 - No database
@@ -554,19 +554,10 @@ Note:
 
 --
 
-## Pipeline Happiness
+### Pipeline Happiness
 
 ![](images/pipeline-happiness.png) <!-- .element height="80%" width="80%" -->
 
 --
 
 ![Peak of Joy](images/gipfel_der_freude.jpg) <!-- .element height="65%" width="65%" -->
-
----
-
-![](images/feedback.png) <!-- .element height="48%" width="48%" -->
-
----
-
-![](images/qr-presentation-link.png) <!-- .element height="40%" width="40%" -->
-https://xxthunder.github.io/GermanTestingDay2024/
