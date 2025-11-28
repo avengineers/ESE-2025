@@ -137,11 +137,11 @@ Sounded difficult, but we had learned at university: Nothing is too difficult fo
 
 ## The Starting Point
 
-- No unit tests <!-- .element: class="fragment" -->
-- A bit of SIL and HIL <!-- .element: class="fragment" -->
-- Lots of driving tests <!-- .element: class="fragment" -->
-- Code reuse across all projects <!-- .element: class="fragment" -->
-- Several hundred developers worldwide on one codebase <!-- .element: class="fragment" -->
+- Keine Unit Tests <!-- .element: class="fragment" -->
+- Kein CI, nur nightly builds <!-- .element: class="fragment" -->
+- Viele Integrationstests, hauptsächlich Fahrversuch <!-- .element: class="fragment" -->
+- Code Reuse über alle Projekte <!-- .element: class="fragment" -->
+- Mehrere 100 Entwickler weltweit an einer Codebasis <!-- .element: class="fragment" -->
 
 Note:
 
@@ -181,18 +181,18 @@ and several hundred developers worldwide are working on one codebase?
 
 <!-- .slide: data-visibility="hidden" -->
 
-## Die Tools
+## The Tools
 
-- MKS / PTC Integrity oder "RCS on Steroids" <!-- .element: class="fragment" -->
-- GNU Make / MSYS in Java GUI auf Windows 2000 <!-- .element: class="fragment" -->
-- Build Server auf ESX / VMWare <!-- .element: class="fragment" -->
+- MKS / PTC Integrity or "RCS on Steroids" <!-- .element: class="fragment" -->
+- GNU Make / MSYS in Java GUI on Windows 2000 <!-- .element: class="fragment" -->
+- Build Server on ESX / VMWare <!-- .element: class="fragment" -->
   - Remote Builds <!-- .element: class="fragment" -->
   - Nightly Builds <!-- .element: class="fragment" -->
 
 Note:
 
-- User konnte remote Builds per GUI triggern
-- Nightly Builds automatisch
+- Users could trigger remote builds via GUI
+- Nightly builds ran automatically
 
 --
 
@@ -226,36 +226,11 @@ And how did you feel as a developer?
 
 _click_
 
---
-
-<!-- .slide: data-visibility="hidden" -->
-
-## Der Prozess: ASPICE
-
-![](images/aspice-1.png) <!-- .element width="80%" -->
-
-Note:
-
-- wird nur als Last angesehen
-- Entwicklung läuft richtig, da muss nichts geändert werden.
-- Wer soll die ganzen Dokumente erzeugen?
-- So viel Zeit haben wir gar nicht.
-
---
-
-![Valley of Tears](images/tal_der_traenen.jpg) <!-- .element width="65%" -->
-
-Note:
-
-Like in the valley of tears.
-
 ---
 
 ## We need to change something!
 
-### But what?
-
-Automotive Software Factory (2011-2021) <!-- .element: class="fragment" -->
+### But what? <!-- .element: class="fragment" -->
 
 Note:
 
@@ -271,9 +246,9 @@ The name came later, but there were plenty of ideas.
 
 --
 
-SW changes only until noon, then bugfixing and testing in driving tests.
+SW changes only until noon, then bugfixing and vehicle tests.
 
-![](images/sad-developer.png) <!-- .element: width="40%"  class="fragment" data-fragment-index="1" -->
+![](images/sad-developer.png) <!-- .element: width="80%"  class="fragment" data-fragment-index="1" -->
 
 Note:
 
@@ -291,7 +266,7 @@ What else can you do?
 
 --
 
-## Unit Testing is a good start.
+### Unit Testing is a good start.
 
 - With our own framework based on CUnit <!-- .element: class="fragment" -->
 - Automatic generation of mockups <!-- .element: class="fragment" -->
@@ -324,7 +299,7 @@ And of course, if you have unit tests, you want to run them automatically.
 
 --
 
-## Continuous Integration sounds nice too.
+### Continuous Integration sounds nice too.
 
 - Gerrit and Jenkins for tools <!-- .element: class="fragment" -->
 - Feature-based testing via commit comments <!-- .element: class="fragment" -->
@@ -363,14 +338,15 @@ Our CI solution ran in parallel to nightly builds.
 
 --
 
-What we wanted to create:
+### Our Dream: The Software Factory
 
 ![](images/sw-factory.png) <!-- .element height="60%" width="60%" -->
 
 --
 
-The monster that came out of it:
-![](images/jenkinstein.jpg) <!-- .element height="50%" width="50%" -->
+### Jenkins School of Witchcraft and Wizardry
+
+![](images/jenkins-magic.png) <!-- .element height="60%" width="60%" -->
 
 Note:
 
@@ -383,14 +359,6 @@ Instead of having a unified build system including pipeline, we had a multitude 
 We abused Jenkins as a build system, as a test system, as a deployment system, as a monitoring system.
 
 Everything our build system couldn't do, we packed into Jenkins pipelines.
-
---
-
-Jenkins School of Witchcraft and Wizardry
-
-![](images/jenkins-magic.png) <!-- .element height="60%" width="60%" -->
-
-Note:
 
 - The crux with Jenkins pipelines
   - Java developers who just want to program Java
@@ -405,48 +373,45 @@ Note:
 
 --
 
-<!-- .slide: data-visibility="hidden" -->
+### The Infrastructure
 
-### Thema: Skalierbarkeit
-
-- Klassische IT hat ESX / VMWare im Bauchladen <!-- .element: class="fragment" -->
-- 500 Statische Windows Server VMs <!-- .element: class="fragment" -->
-- 2 Millionen Euro in Bare-Metal versenkt <!-- .element: class="fragment" -->
-- Kombination von CI/CD, Nightly Builds und on-demand Builds <!-- .element: class="fragment" -->
+- On-premise Jenkins with 500 static VMs <!-- .element: class="fragment" -->
+- Micro services for reporting and artifact storage <!-- .element: class="fragment" -->
+- Combination of CI/CD, nightly builds and on-demand builds <!-- .element: class="fragment" -->
 
 --
 
 <!-- .slide: data-visibility="hidden" -->
 
-### Die Sicht eines Anwenders:
+### A User's Perspective:
 
-"Meine Komponente ist so komplex und kann nur komplett im Verbund getestet werden. Ist mir egal, ob es 10 oder 100 Kundenprojekte gibt, das muss die Software Factory können."
-
---
-
-<!-- .slide: data-visibility="hidden" -->
-
-### Die Erlösung: GitHub Enterprise
-
-- ... ist keine Erlösung. <!-- .element: class="fragment" -->
-- Mono-Repo skalierte nicht. <!-- .element: class="fragment" -->
-- Testaufwand für jede Änderung zu hoch. <!-- .element: class="fragment" -->
-- 24/7 Auslastung der Buildagents <!-- .element: class="fragment" -->
-- Teilweise mussten nightly builds auf den Vorgänger warten <!-- .element: class="fragment" -->
-- Kann man bei 24h noch von nightly builds reden? <!-- .element: class="fragment" -->
-- Webportal zur Anzeige der Ergebnisse der Builds (immer rot) <!-- .element: class="fragment" -->
+"My component is so complex and can only be tested completely in the integrated system. I don't care if there are 10 or 100 customer projects, the Software Factory must be able to handle that."
 
 --
 
 <!-- .slide: data-visibility="hidden" -->
 
-### Und was macht eigentlich die Toolabteilung?
+### The Salvation: GitHub Enterprise
 
-- Tool Dependency Handling mit eigenem Paketmanager (Hack in Java) <!-- .element: class="fragment" -->
-- Hybridcloud: on-premise und AWS/EC2 <!-- .element: class="fragment" -->
-- 2 Scrum Teams waren zu wenigstens 50% mit Maintenance ausgelastet. <!-- .element: class="fragment" -->
-- Es ging die "Service Card" um. <!-- .element: class="fragment" -->
-- GitHub Enterprise Instanz andauernd am Limit. <!-- .element: class="fragment" -->
+- ... was no salvation. <!-- .element: class="fragment" -->
+- Mono-repo didn't scale. <!-- .element: class="fragment" -->
+- Test effort for every change too high. <!-- .element: class="fragment" -->
+- 24/7 utilization of build agents <!-- .element: class="fragment" -->
+- Sometimes nightly builds had to wait for the previous one <!-- .element: class="fragment" -->
+- Can you still call them nightly builds at 24h? <!-- .element: class="fragment" -->
+- Web portal to display build results (always red) <!-- .element: class="fragment" -->
+
+--
+
+<!-- .slide: data-visibility="hidden" -->
+
+### And what about the Tool Department?
+
+- Tool dependency handling with custom package manager (hack in Java) <!-- .element: class="fragment" -->
+- Hybrid cloud: on-premise and AWS/EC2 <!-- .element: class="fragment" -->
+- 2 Scrum teams were at least 50% occupied with maintenance. <!-- .element: class="fragment" -->
+- The "Service Card" was being passed around. <!-- .element: class="fragment" -->
+- GitHub Enterprise instance constantly at its limit. <!-- .element: class="fragment" -->
 
 ---
 
@@ -547,18 +512,18 @@ No CI-only code
 
 <!-- .slide: data-visibility="hidden" -->
 
-## SPLE Plattform
+## SPLE Platform
 
 - VSCode plus CMake Tools
-- Konfiguration as Code
-- Einfach Erweiterbar
-- SPLE ermöglicht modulare SW Entwicklung
-- Komponenten als Bausteine der Software
-- Separate Repositories dank RTE Schnittstellen
-- Eigene Konfiguration
-- Variantenunabhängige Unittests
-- Trennung von Kunden- und Entwicklersicht
-- Integrationstests der Komponenten möglich
+- Configuration as Code
+- Easily extensible
+- SPLE enables modular SW development
+- Components as building blocks of the software
+- Separate repositories thanks to RTE interfaces
+- Custom configuration
+- Variant-independent unit tests
+- Separation of customer and developer view
+- Integration tests of components possible
 
 --
 
@@ -582,10 +547,10 @@ Note:
 
 ## Reporting
 
-- Weniger ist mehr
-- Keine Datenbank
-- Kein Ergebnisportal selber stricken
-- Jenkins + Artifactory und gut
+- Less is more
+- No database
+- Don't build your own results portal
+- Jenkins + Artifactory and done
 
 --
 
