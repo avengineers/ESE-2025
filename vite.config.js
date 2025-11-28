@@ -7,7 +7,8 @@ export default defineConfig({
     host: true,
     watch: {
       usePolling: true,
-      interval: 300
+      interval: 300,
+      ignored: ['!**/node_modules/**', '!**/.git/**']
     },
     hmr: {
       overlay: true
@@ -15,8 +16,9 @@ export default defineConfig({
   },
   plugins: [
     {
-      name: 'reload-on-markdown-change',
+      name: 'reload-on-file-change',
       handleHotUpdate({ file, server }) {
+        // Special handling for markdown files
         if (file.endsWith('.md')) {
           console.log(`Markdown file changed: ${file}`);
           server.ws.send({
@@ -25,6 +27,17 @@ export default defineConfig({
           });
           return [];
         }
+        // Special handling for images
+        if (/\.(png|jpg|jpeg|gif|svg|webp)$/i.test(file)) {
+          console.log(`Image file changed: ${file}`);
+          server.ws.send({
+            type: 'full-reload',
+            path: '*'
+          });
+          return [];
+        }
+        // Log all other file changes
+        console.log(`File changed: ${file}`);
       }
     }
   ],

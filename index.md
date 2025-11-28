@@ -13,38 +13,40 @@ Hello everyone and welcome to my talk about CI/CD. Today I'd like to take you on
 ## Who are we?
 
 <div>
-<img src="images/karsten.jpg">
+<img src="images/karsten.png">
 
 [Karsten](https://www.linkedin.com/in/karnangue/)
+
 </div> <!-- .element: style="float: left; width: 30%" -->
 
 <div>
-<img src="images/matthias.png">
+<img src="images/alexandru.png">
 
-[Matthias](https://www.linkedin.com/in/matthias-eggert-b7939a18a/)
-</div> <!-- .element: style="float: right; width: 40%;" -->
+[Alexandru](https://www.maxiniuc.com/)
+
+</div> <!-- .element: style="float: right; width: 30%;" -->
 
 Note:
 
 Okay, so who are we actually?
 
-Matthias worked for several years in the automotive industry as a software integrator, software developer, and DevOps engineer.
+Alexandru has nearly 20 years of experience in the automotive industry, specializing in safety-critical embedded software for braking systems.
 
-He always worked on safety-critical functions like braking systems or battery management systems.
+He's passionate about build systems and Software Product Line Engineering.
 
-We worked together at Continental about 8 years ago and then moved to Marquardt at the same time.
+He currently works as a Senior Platform Engineer in the Rhine-Main Team at Marquardt GmbH.
 
-There we worked together on our solution for Software Product Line Engineering, which will only be touched on peripherally today.
-
-He now works as a DevOps Engineer and test automation specialist at Qytera GmbH.
-
-I myself have been working as a software developer in the automotive sector for over 18 years.
+I myself have been working as a software developer for over 25 years.
 
 From Ada, Embedded C, C++, Perl, Tcl, Python, to developing dev tools and Jenkins pipelines - I've seen and done a lot.
 
 Currently, I work as a Platform Engineer in the Rhine-Main team at Marquardt GmbH.
 
 There it's all about Software Product Lines, internal developer platforms, automation, and CI/CD.
+
+He has extensive experience developing CI methods, tools, and pipelines.
+
+He currently works as a platform architect in the Rhine-Main Team at Marquardt GmbH, focusing on internal development platforms and Software Product Line Engineering.
 
 ---
 
@@ -58,7 +60,7 @@ Note:
 
 Where do we actually come from?
 
-*click*
+_click_
 
 For that, we need to go back a bit into the past, specifically to the year 2005.
 
@@ -79,19 +81,19 @@ What was it like back then in the automotive industry?
 
 Actually, pretty much the same as today.
 
-*click*
+_click_
 
 Exciting products: brake control units, ESP, ABS, ACC, ...
 
-*click*
+_click_
 
 Constantly new requirements, as many customers want to stand out from the competition.
 
-*click*
+_click_
 
 The jobs were well paid.
 
-*click*
+_click_
 
 Actually paradise for SW developers.
 
@@ -109,27 +111,28 @@ Note:
 
 And the job?
 
-*click*
+_click_
 
 Sure, we're coding Embedded C for brake control units.
 
-*click*
+_click_
 
 No problem, we had that at university.
 
-*click*
+_click_
 
 Here came the first damper.
 
 You got responsibility for a part of the code, but ideally you shouldn't change it.
 
-*click*
+_click_
 
 Why? Don't break the build!
 
-*click*
+_click_
 
 Sounded difficult, but we had learned at university: Nothing is too difficult for an engineer!
+
 --
 
 ## The Starting Point
@@ -144,7 +147,7 @@ Note:
 
 The starting point?
 
-*click*
+_click_
 
 Oops, no unit tests.
 
@@ -152,11 +155,11 @@ Not a single line of test code in the repository.
 
 Sure, where do you test brakes? In the car.
 
-*click*
+_click_
 
 Well, some SIL and HIL was done.
 
-*click*
+_click_
 
 But most of it was tested in driving tests.
 
@@ -164,16 +167,15 @@ So many features were tested at some point, somewhere in some project.
 
 Hence the motto: better not change anything.
 
-*click*
+_click_
 
 But how is that supposed to work when the code is shared across all projects,
 
 all customers come around the corner with new requirements..
 
-*click*
+_click_
 
 and several hundred developers worldwide are working on one codebase?
-
 
 --
 
@@ -188,6 +190,7 @@ and several hundred developers worldwide are working on one codebase?
   - Nightly Builds <!-- .element: class="fragment" -->
 
 Note:
+
 - User konnte remote Builds per GUI triggern
 - Nightly Builds automatisch
 
@@ -207,7 +210,7 @@ About what Continuous Integration is absolutely NOT.
 
 At some point, I came up with a fitting name for the situation back then:
 
-*click*
+_click_
 
 Continuous "Child in the Well".
 
@@ -221,7 +224,7 @@ What does that mean exactly?
 
 And how did you feel as a developer?
 
-*click*
+_click_
 
 --
 
@@ -232,6 +235,7 @@ And how did you feel as a developer?
 ![](images/aspice-1.png) <!-- .element width="80%" -->
 
 Note:
+
 - wird nur als Last angesehen
 - Entwicklung läuft richtig, da muss nichts geändert werden.
 - Wer soll die ganzen Dokumente erzeugen?
@@ -257,7 +261,7 @@ Note:
 
 Well, we need to change something! But what?
 
-*click*
+_click_
 
 This is where our CI journey really begins.
 
@@ -277,7 +281,7 @@ One idea was ...
 
 You can imagine how thrilled the developers were.
 
-*click*
+_click_
 
 Especially considering the question of what noon means at an international corporation working worldwide.
 
@@ -300,21 +304,21 @@ Sure, if you don't have unit tests, that's always a good start.
 
 However, it wasn't that easy to make our code testable.
 
-*click*
+_click_
 
 We built our own framework based on CUnit.
 
-*click*
+_click_
 
 The automatic generation of mockups was a big success back then.
 
 Writing mockups manually (especially in the era of Autosar) was simply too time-consuming and a major hurdle for developers.
 
-*click*
+_click_
 
 We tried from the beginning to establish Test Driven Development based on requirements.
 
-*click*
+_click_
 
 And of course, if you have unit tests, you want to run them automatically.
 
@@ -333,7 +337,7 @@ Well, we have a Jenkins and some unit tests.
 
 Let's do CI!
 
-*click*
+_click_
 
 ...
 
@@ -347,7 +351,7 @@ Note:
 
 What? No Git? You're doing CI with RCS?
 
-*click*
+_click_
 
 Sorry, but there's no mercy then!
 
@@ -519,17 +523,17 @@ Note:
 
 ## How to do it better?
 
-* A meta-build system (e.g.: CMake)  <!-- .element: class="fragment" -->
-* A really fast build system for C/C++ (ninja) <!-- .element: class="fragment" -->
-* All dependencies via bootstrapping <!-- .element: class="fragment" -->
-* Other Git repos via CMake's Fetch_Content() <!-- .element: class="fragment" -->
-* Pipeline as code in the repo <!-- .element: class="fragment" -->
+- A meta-build system (e.g.: CMake) <!-- .element: class="fragment" -->
+- A really fast build system for C/C++ (ninja) <!-- .element: class="fragment" -->
+- All dependencies via bootstrapping <!-- .element: class="fragment" -->
+- Other Git repos via CMake's Fetch_Content() <!-- .element: class="fragment" -->
+- Pipeline as code in the repo <!-- .element: class="fragment" -->
 
 Note:
 
 Okay, so how do we do it better?
 
-*click*
+_click_
 
 Well, you definitely need a build system generator that resolves dependencies and generates build files.
 
@@ -545,26 +549,26 @@ No CI-only code
 
 ## SPLE Plattform
 
-* VSCode plus CMake Tools
-* Konfiguration as Code
-* Einfach Erweiterbar
-* SPLE ermöglicht modulare SW Entwicklung
-* Komponenten als Bausteine der Software
-* Separate Repositories dank RTE Schnittstellen
-* Eigene Konfiguration
-* Variantenunabhängige Unittests
-* Trennung von Kunden- und Entwicklersicht
-* Integrationstests der Komponenten möglich
+- VSCode plus CMake Tools
+- Konfiguration as Code
+- Einfach Erweiterbar
+- SPLE ermöglicht modulare SW Entwicklung
+- Komponenten als Bausteine der Software
+- Separate Repositories dank RTE Schnittstellen
+- Eigene Konfiguration
+- Variantenunabhängige Unittests
+- Trennung von Kunden- und Entwicklersicht
+- Integrationstests der Komponenten möglich
 
 --
 
 ## Jenkins
 
-* does NOTHING different than the user locally <!-- .element: class="fragment" -->
-* Build is a one-liner <!-- .element: class="fragment" -->
-* Automatic job creation for branches and pull requests <!-- .element: class="fragment" -->
-* Few plugins to display results <!-- .element: class="fragment" -->
-* Supporting developers in analyzing errors <!-- .element: class="fragment" -->
+- does NOTHING different than the user locally <!-- .element: class="fragment" -->
+- Build is a one-liner <!-- .element: class="fragment" -->
+- Automatic job creation for branches and pull requests <!-- .element: class="fragment" -->
+- Few plugins to display results <!-- .element: class="fragment" -->
+- Supporting developers in analyzing errors <!-- .element: class="fragment" -->
 
 Note:
 
@@ -578,10 +582,10 @@ Note:
 
 ## Reporting
 
-* Weniger ist mehr
-* Keine Datenbank
-* Kein Ergebnisportal selber stricken
-* Jenkins + Artifactory und gut
+- Weniger ist mehr
+- Keine Datenbank
+- Kein Ergebnisportal selber stricken
+- Jenkins + Artifactory und gut
 
 --
 
@@ -592,7 +596,6 @@ Note:
 --
 
 ![Peak of Joy](images/gipfel_der_freude.jpg) <!-- .element height="65%" width="65%" -->
-
 
 ---
 
