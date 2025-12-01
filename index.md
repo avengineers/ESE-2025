@@ -149,11 +149,11 @@ Sounded difficult, but we had learned at university: Nothing is too difficult fo
 
 ### The Starting Point
 
-- Keine Unit Tests <!-- .element: class="fragment" -->
-- Kein CI, nur nightly builds <!-- .element: class="fragment" -->
-- Viele Integrationstests, hauptsächlich Fahrversuch <!-- .element: class="fragment" -->
-- Code Reuse über alle Projekte <!-- .element: class="fragment" -->
-- Mehrere 100 Entwickler weltweit an einer Codebasis <!-- .element: class="fragment" -->
+- No unit tests <!-- .element: class="fragment" -->
+- No CI, only nightly builds <!-- .element: class="fragment" -->
+- Many integration tests, mainly vehicle trials <!-- .element: class="fragment" -->
+- Code reuse across all projects <!-- .element: class="fragment" -->
+- Several hundred developers worldwide working on one codebase <!-- .element: class="fragment" -->
 
 Note:
 
@@ -500,25 +500,91 @@ Note:
 
 ### How to do it better?
 
-- A meta-build system (e.g.: CMake) <!-- .element: class="fragment" -->
-- A really fast build system for C/C++ (ninja) <!-- .element: class="fragment" -->
-- All dependencies via bootstrapping <!-- .element: class="fragment" -->
-- Other Git repos via CMake's Fetch_Content() <!-- .element: class="fragment" -->
-- Pipeline as code in the repo <!-- .element: class="fragment" -->
+- <!-- .element: class="fragment" --> Pipeline as Code
+- <!-- .element: class="fragment" --> Dependencies as Code
+- <!-- .element: class="fragment" --> Quality Checks as Code
+- <!-- .element: class="fragment" --> Everything else as Code
 
 Note:
 
-Okay, so how do we do it better?
+--
 
-_click_
+### Pipeline Happiness?
 
-Well, you definitely need a build system generator that resolves dependencies and generates build files.
+- Checkout from repository<!-- .element: class="fragment" -->
+- Installation of all dependencies <!-- .element: class="fragment" -->
+- Execute selected tests as quality checks <!-- .element: class="fragment" -->
+- Archive results <!-- .element: class="fragment" -->
 
-CMake is a good candidate from our perspective.
+--
 
-You do need some kind of pipeline, but only to control the build system.
+### Jenkins
 
-No CI-only code
+<div style="font-size: xx-large">
+
+```Groovy
+...
+
+node() {
+    stage("Checkout Code") {
+        checkout scm
+    }
+
+    stage("Installation of Dependencies") {
+        bat "call build.bat -install -installOptional || exit /b 1"
+    }
+
+    stage ("Execute Tests") {
+        bat "call build.bat -selftests -marker 'build_debug or reports' || exit /b 1"
+    }
+
+    stage("Deploy Test Results") {
+        junit allowEmptyResults: false, keepLongStdio: false, testResults: "test/output/test-report.xml"
+    }
+
+    ...
+}
+
+...
+```
+
+</div>
+
+--
+
+### GitHub Actions
+
+<div style="font-size: xx-large">
+
+```yaml
+---
+jobs:
+  test:
+    name: CI Gate
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Installation of Dependencies
+        run: |
+          .\build.ps1 -install
+        shell: powershell
+      - name: Execute Tests
+        run: |
+          .\build.ps1 -selftests -marker "build_debug or reports"
+        shell: powershell
+      - name: Deploy Test Results
+        uses: EnricoMi/publish-unit-test-result-action/windows@v2
+        if: always()
+        with:
+          files: |
+            test/output/test-report.xml
+```
+
+</div>
 
 --
 
@@ -563,13 +629,3 @@ Note:
 - No database
 - Don't build your own results portal
 - Jenkins + Artifactory and done
-
---
-
-### Pipeline Happiness
-
-![](images/pipeline-happiness.png) <!-- .element height="80%" width="80%" -->
-
---
-
-![Peak of Joy](images/gipfel_der_freude.jpg) <!-- .element height="65%" width="65%" -->
