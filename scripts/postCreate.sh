@@ -7,6 +7,10 @@ set -e
 
 echo "Running post-create setup..."
 
+# Initialize and update git submodules
+echo "Initializing git submodules..."
+git submodule update --init --recursive
+
 # Install Claude Code globally
 echo "Installing Claude Code CLI..."
 npm install -g @anthropic-ai/claude-code

@@ -2,26 +2,30 @@
 
 ## Project Overview
 
-This repository contains a presentation for the ESE Kongress 2025 (Embedded Software Engineering Congress) titled **"Eine CI Reise oder Weniger Pipelines, mehr Spaß"** (A CI Journey or Less Pipelines, More Fun).
+This repository contains a presentation for the ESE Kongress 2025 (Embedded Software Engineering Congress) titled **"A CI Journey or Less Pipelines, More Happy Developers!"**.
 
 The presentation documents a two-decade journey in the automotive industry, transforming from reactive "Continuous Kind im Brunnen" (Continuous "Child in the Well") CI practices to a modern Internal Developer Platform (IDP) for Software Product Line Engineering (SPLE).
 
 ## Topic Summary
 
 ### Main Theme
+
 Building a modern CI/CD platform in the automotive industry that ensures:
+
 - Fast, reliable feedback for developers
 - Reproducible builds across local and CI environments
 - Reduced pipeline complexity
 - Improved developer happiness
 
 ### Key Technologies
+
 - **Python + Pytest**: Unified test framework for all quality gates
 - **CMake + Ninja**: Meta-build system and fast build executor
 - **Jenkins**: Thin orchestration layer (not business logic)
 - **Scoop**: Windows package manager for toolchain installation
 
 ### Architecture Principles
+
 1. **Separation of Concerns**: Pipeline logic handles only orchestration; business logic resides in build system
 2. **Local-First Development**: Jenkins executes identical commands developers run locally
 3. **Bootstrapping**: Build scripts handle all dependency resolution
@@ -29,7 +33,9 @@ Building a modern CI/CD platform in the automotive industry that ensures:
 5. **Quality Gates as Test Selection**: Different test levels are simply pytest marker selections
 
 ### The Problem Solved
+
 The presentation addresses the evolution from "Jenkinstein" - a monolithic Jenkins pipeline containing thousands of lines of unmaintainable Groovy DSL code that served as build system, test system, deployment system, and monitoring system - to a clean, modular platform where:
+
 - Failures are reproducible locally
 - Debugging is straightforward
 - Quality gates are transparent pytest marker selections
@@ -70,13 +76,15 @@ The presentation is structured in 6 main sections:
 ## Technology Stack
 
 ### Presentation Framework
+
 - **Reveal.js**: HTML presentation framework
 - **Markdown**: Slide content format
 - **Mermaid**: Diagram rendering
 - **PlantUML**: Additional diagram support
-- **Vite**: Build tool (migrated from Gulp/PowerShell)
+- **Vite**: Build and development server
 
 ### Development Environment
+
 - Git repository with develop branch as main
 - DevContainer support for consistent development environment
 - VSCode integration
@@ -84,6 +92,7 @@ The presentation is structured in 6 main sections:
 ## Key Concepts Explained
 
 ### Quality Gates as Test Selection
+
 Instead of complex pipeline logic determining what to test, the platform uses pytest markers:
 
 ```python
@@ -92,6 +101,7 @@ Instead of complex pipeline logic determining what to test, the platform uses py
 ```
 
 Different triggers select different marker combinations:
+
 - **Pull Request**: Quick tests only
 - **Main Branch**: Full test suite
 - **Nightly**: Extended tests including long-running scenarios
@@ -99,16 +109,19 @@ Different triggers select different marker combinations:
 ### SPLE Platform Benefits
 
 **For Developers:**
+
 - Same commands work locally and in CI
 - Easy debugging of failures
 - Fast feedback cycles
 
 **For Platform Engineers:**
+
 - Maintainable Python code instead of complex Groovy DSL
 - Reusable components across Software Product Lines
 - Clear separation of concerns
 
 **For Management:**
+
 - Fast, reliable feedback on software quality
 - Transparent quality criteria
 - Always releasable software state
@@ -118,6 +131,7 @@ Different triggers select different marker combinations:
 **ESE Kongress 2025**: The Embedded Software Engineering Congress is a major European conference focusing on embedded systems, automotive software, and software engineering practices in safety-critical industries.
 
 This presentation targets:
+
 - Platform engineers building CI/CD systems
 - Automotive software teams
 - Organizations dealing with complex multi-tool landscapes
@@ -125,7 +139,7 @@ This presentation targets:
 
 ## Development Instructions
 
-The presentation is built using Reveal.js and can be viewed by opening `index.html` in a web browser. The build system has been migrated from PowerShell/Gulp to Vite for improved developer experience.
+The presentation is built using Reveal.js and can be viewed by opening `index.html` in a web browser. To run the development server with live reload, use `npm run dev`.
 
 ## Related Standards and Frameworks
 
