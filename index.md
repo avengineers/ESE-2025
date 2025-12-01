@@ -147,13 +147,13 @@ Sounded difficult, but we had learned at university: Nothing is too difficult fo
 
 --
 
-### The Starting Point
+### Development Workflow
 
 - No unit tests <!-- .element: class="fragment" -->
 - No CI, only nightly builds <!-- .element: class="fragment" -->
 - Many integration tests, mainly vehicle trials <!-- .element: class="fragment" -->
 - Code reuse across all projects <!-- .element: class="fragment" -->
-- Several hundred developers worldwide working on one codebase <!-- .element: class="fragment" -->
+- Hundreds of developers worldwide working on one codebase in RCS <!-- .element: class="fragment" -->
 
 Note:
 
@@ -258,7 +258,7 @@ The name came later, but there were plenty of ideas.
 
 --
 
-SW changes only until noon, then bugfixing and vehicle tests.
+Changes until noon, then bug fixing and vehicle tests
 
 ![](images/sad-developer.png) <!-- .element: width="80%"  class="fragment" data-fragment-index="1" -->
 
@@ -278,10 +278,11 @@ What else can you do?
 
 --
 
-### Unit Testing is a good start.
+### First Goal: Unit Tests
 
 - With our own framework based on CUnit <!-- .element: class="fragment" -->
 - Automatic generation of mockups <!-- .element: class="fragment" -->
+- XML2Makefile code generation <!-- .element: class="fragment" -->
 - Test Driven Development (TDD) <!-- .element: class="fragment" -->
 - Nightly tests on Jenkins (and Hudson!) <!-- .element: class="fragment" -->
 
@@ -391,40 +392,6 @@ Everything our build system couldn't do, we packed into Jenkins pipelines.
 - Micro services for reporting and artifact storage <!-- .element: class="fragment" -->
 - Combination of CI/CD, nightly builds and on-demand builds <!-- .element: class="fragment" -->
 
---
-
-<!-- .slide: data-visibility="hidden" -->
-
-### A User's Perspective:
-
-"My component is so complex and can only be tested completely in the integrated system. I don't care if there are 10 or 100 customer projects, the Software Factory must be able to handle that."
-
---
-
-<!-- .slide: data-visibility="hidden" -->
-
-### The Salvation: GitHub Enterprise
-
-- ... was no salvation. <!-- .element: class="fragment" -->
-- Mono-repo didn't scale. <!-- .element: class="fragment" -->
-- Test effort for every change too high. <!-- .element: class="fragment" -->
-- 24/7 utilization of build agents <!-- .element: class="fragment" -->
-- Sometimes nightly builds had to wait for the previous one <!-- .element: class="fragment" -->
-- Can you still call them nightly builds at 24h? <!-- .element: class="fragment" -->
-- Web portal to display build results (always red) <!-- .element: class="fragment" -->
-
---
-
-<!-- .slide: data-visibility="hidden" -->
-
-### And what about the Tool Department?
-
-- Tool dependency handling with custom package manager (hack in Java) <!-- .element: class="fragment" -->
-- Hybrid cloud: on-premise and AWS/EC2 <!-- .element: class="fragment" -->
-- 2 Scrum teams were at least 50% occupied with maintenance. <!-- .element: class="fragment" -->
-- The "Service Card" was being passed around. <!-- .element: class="fragment" -->
-- GitHub Enterprise instance constantly at its limit. <!-- .element: class="fragment" -->
-
 ---
 
 ### What did we actually do wrong?
@@ -432,6 +399,16 @@ Everything our build system couldn't do, we packed into Jenkins pipelines.
 Note:
 
 At first, everything went well ...
+
+--
+
+### The Reality
+
+- CI for tools <!-- .element: class="fragment" -->
+- CI for target builds (Ninja) <!-- .element: class="fragment" -->
+- Nightly target builds (Eclipse + GNU Make) <!-- .element: class="fragment" -->
+- Nightly unit tests (GNU Make) <!-- .element: class="fragment" -->
+- Jenkins pipelines as orchestration layer <!-- .element: class="fragment" -->
 
 --
 
@@ -500,12 +477,109 @@ Note:
 
 ### How to do it better?
 
-- <!-- .element: class="fragment" --> Pipeline as Code
-- <!-- .element: class="fragment" --> Dependencies as Code
-- <!-- .element: class="fragment" --> Quality Checks as Code
-- <!-- .element: class="fragment" --> Everything else as Code
+--
+
+### Architecture Principles
+
+<div class="compact-list">
+
+<div class="fragment">
+
+🎯 **Separation of Concerns** → Pipeline = Orchestration only
+
+</div>
+
+<div class="fragment">
+
+💻 **Local-First Development** → Same commands everywhere
+
+</div>
+
+<div class="fragment">
+
+🚀 **Bootstrapping** → Scripts handle dependencies
+
+</div>
+
+<div class="fragment">
+
+🏗️ **Unified Build System** → CMake + Ninja for all variants
+
+</div>
+
+<div class="fragment">
+
+✅ **Quality Gates = Test Selection** → Pytest markers drive everything
+
+</div>
+
+</div>
 
 Note:
+
+These are the core principles we derived after recognizing that CI and local environments differ primarily in orchestration, not in actual build and test execution.
+
+Separation of Concerns: All business logic lives in the build system, not in pipeline DSL.
+
+Local-First: Jenkins executes the exact same commands developers run on their machines.
+
+Bootstrapping: Build scripts handle all dependency resolution and tool installation automatically.
+
+Unified Build System: CMake as meta-build system generates all artifacts for all variants.
+
+Quality Gates: Different test levels are just pytest marker selections, making them transparent and reproducible.
+
+--
+
+### The SPLE Platform Stack
+
+<div class="compact-list">
+
+<div class="fragment">
+
+📦 **Scoop** - Windows package manager
+
+</div>
+
+<div class="fragment">
+
+🏗️ **CMake + Ninja** - Fast (meta) build system
+
+</div>
+
+<div class="fragment">
+
+🐍 **Python + Pytest** - Universal test framework
+
+</div>
+
+<div class="fragment">
+
+🔄 **Thin (Jenkins/GitHub) Pipeline** - Minimal orchestration
+
+</div>
+
+<div class="fragment">
+
+🎯 **Quality Gates** - Pytest marker selection
+
+</div>
+
+</div>
+
+Note:
+
+Our implementation stack is simple but powerful:
+
+Scoop handles all toolchain installation on Windows automatically.
+
+CMake as meta-build system generates ninja build files for performance - building all artifacts of all variants.
+
+Python and Pytest serve as the universal test framework for ALL quality gates.
+
+Jenkins pipeline is thin - just orchestration, calling pytest with appropriate markers.
+
+Quality gates are transparent: quick tests for PRs, full tests for main branch, extended tests for nightly.
 
 --
 
@@ -552,6 +626,114 @@ node() {
 
 --
 
+<div class="mermaid" style="width: 120%; height: auto; margin-left: -10%; ">
+<pre>
+%%{ init: { 'theme': 'dark', 'themeVariables': { 'edgeLabelBackground': 'transparent', 'fontSize': '20px' } } }%%
+flowchart LR
+
+    subgraph QG["🎯 Quality Gate Selection"]
+        C1["What to test?"] --> C2{Trigger Type}
+        C2 -->|PR| C3["⚡ Quick Tests"]
+        C2 -->|Main Branch| C4["🔍 Full Tests"]
+        C2 -->|Nightly| C5["🌙 Long Tests"]
+    end
+
+      C3 --> C6["🎭 Start Parallel Execution"]
+      C4 --> C6
+      C5 --> C6
+
+      subgraph TE["🔄 Test Execution"]
+          subgraph A1["Agent 1"]
+              M1A["📥 Checkout Code"] --> M1B["🔧 Installation of Dependencies"]
+              M1B --> M1C["🧪 Execute Tests"]
+              M1C --> M1D["📋 Deploy Test Results"]
+              M1D --> M1E["📦 Deploy Artifacts"]
+          end
+
+          subgraph Ax["..."]
+          end
+
+          subgraph An["Agent N"]
+              M3A["📥 Checkout Code"] --> M3B["🔧 Installation of Dependencies"]
+              M3B --> M3C["🧪 Execute Tests"]
+              M3C --> M3D["📋 Deploy Test Results"]
+              M3D --> M3E["📦 Deploy Artifacts"]
+          end
+          START["▶️ Start"] --> M1A
+          START --> Ax
+          START --> M3A
+          M1E --> END["⏹️ End"]
+          M3E --> END
+      end
+
+      C6 --> TE
+
+      TE --> C7["📊 Wait & Collect<br/>Overall Status"]
+
+      %% Style to make an element transparent
+      classDef transparent fill:transparent,stroke:transparent
+      class M2 transparent
+
+</pre>
+</div>
+
+Note:
+
+This diagram shows our unified SPLE pipeline approach.
+
+The pipeline simply selects a quality gate based on the trigger type - pull request, main branch push, or nightly build.
+
+Then it orchestrates parallel execution across multiple agents.
+
+Each agent runs the same four steps: checkout code, install dependencies, execute tests with selected markers, and deploy results.
+
+This transforms quality gates from opaque pipeline magic into transparent, reproducible test selections.
+
+--
+
+### Pytest: The Universal Test Framework
+
+<div style="font-size: large">
+
+```python
+class Test_MyVariant:
+    variant = "MyVariant"
+
+    @pytest.mark.build
+    def test_build(self):
+        spl_build = SplBuild(variant=self.variant,
+                            build_kit="prod",
+                            target="build")
+        result = spl_build.execute()
+        assert result == 0, "Building failed"
+
+    @pytest.mark.unittests
+    def test_unittests(self):
+        spl_build = SplBuild(variant=self.variant,
+                            build_kit="test",
+                            target="unittests")
+        result = spl_build.execute()
+        assert result == 0, "Unit tests failed"
+```
+
+</div>
+
+Note:
+
+Here's the actual code structure we use.
+
+Each variant gets a pytest class with methods decorated with markers.
+
+The build quality gate is marked with pytest.mark.build.
+
+The unittests quality gate is marked with pytest.mark.unittests.
+
+Each test uses the same SplBuild wrapper that calls CMake targets.
+
+This works identically on developer machines and in CI - no magic, fully reproducible.
+
+--
+
 ### GitHub Actions
 
 <div style="font-size: xx-large">
@@ -588,6 +770,60 @@ jobs:
 
 --
 
+### Platform as a Product 🎁
+
+<div class="compact-list">
+
+<div class="fragment">
+
+**Agile Release Train** with SAFe
+
+</div>
+
+<div class="fragment">
+
+**Shared Ownership** across all teams
+
+</div>
+
+<div class="fragment">
+
+**Regular Sprint Reviews** with user feedback
+
+</div>
+
+<div class="fragment">
+
+**Management Support** for budget & infrastructure
+
+</div>
+
+<div class="fragment">
+
+**From Fragmented Tools → Unified Platform**
+
+</div>
+
+</div>
+
+Note:
+
+A major shift was treating the platform itself as a product.
+
+We developed it collaboratively within an Agile Release Train following the Scaled Agile Framework.
+
+This moved us from fragmented, tool-specific automation efforts to a unified, organization-wide initiative.
+
+By coining a clear name and vision, we gave all contributors a shared sense of ownership.
+
+Every team now contributes features, feedback, and improvements through regular sprint reviews.
+
+Management actively supports from a business perspective with dedicated budgets for training, licenses, and infrastructure.
+
+This transforms the platform from an ad-hoc engineering effort into a sustainable, strategic product.
+
+--
+
 <!-- .slide: data-visibility="hidden" -->
 
 ### SPLE Platform
@@ -621,11 +857,44 @@ Note:
 
 --
 
-<!-- .slide: data-visibility="hidden" -->
+### Benefits for Everyone 🎉
 
-### Reporting
+<div style="text-align: left; margin-left: 10%">
 
-- Less is more
-- No database
-- Don't build your own results portal
-- Jenkins + Artifactory and done
+**👨‍💻 Developers:**
+
+- Same commands locally & CI
+- Easy debugging of failures
+- Fast feedback cycles
+
+<!-- .element: class="fragment" -->
+
+**🔧 Platform Engineers:**
+
+- Maintainable Python code
+- Reusable components across SPLs
+- Clear separation of concerns
+
+<!-- .element: class="fragment" -->
+
+**👔 Management:**
+
+- Fast, reliable quality feedback
+- Transparent quality criteria
+- Always releasable software state
+
+<!-- .element: class="fragment" -->
+
+</div>
+
+Note:
+
+Let's summarize the benefits for different stakeholders.
+
+For developers: The same commands work locally and in CI, making debugging straightforward with fast feedback.
+
+For platform engineers: We have maintainable Python code instead of complex Groovy DSL, with reusable components across all Software Product Lines.
+
+For management: Fast, reliable feedback on software quality with transparent criteria ensuring always releasable software.
+
+This transformation from Jenkinstein to a clean SPLE Platform has made everyone happier - hence our title: Less Pipelines, More Happy Developers!

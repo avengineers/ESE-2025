@@ -1,70 +1,89 @@
 .red {
-    color: rgb(198, 6, 6);
+  color: rgb(198, 6, 6);
 }
 
 .yellow {
-    color: rgb(198, 198, 0);
+  color: rgb(198, 198, 0);
 }
 
 .green {
-    color: rgb(10, 98, 10);
+  color: rgb(10, 98, 10);
 }
 
 .blue {
-    color: rgb(0, 0, 198);
+  color: rgb(0, 0, 198);
 }
 
 .strike {
-    text-decoration: line-through;
+  text-decoration: line-through;
 }
 
 .underline {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .transparent {
-    opacity: 0.01;
+  opacity: 0.01;
 }
 
 .mono {
-    font-family: monospace;
-    background-color: gray;
+  font-family: monospace;
+  background-color: gray;
 }
 
 .reveal .adjust-section-structure {
-    font-size: 0.5em;
+  font-size: 0.5em;
 }
 
 .reveal .flex-container {
-    display: flex;
+  display: flex;
 }
 
 .reveal .flex-container .half {
-    flex: 1;
-    width: 50%;
+  flex: 1;
+  width: 50%;
 }
 
 .reveal h1,
 .reveal h2,
 .reveal h3 {
-    text-transform: none;
+  text-transform: none;
 }
 
 .reveal code * {
-    font-family: monospace;
+  font-family: monospace;
 }
 
 .fragment.blur {
-    filter: blur(5px);
+  filter: blur(5px);
 }
 
 .fragment.blur.visible {
-    filter: none;
+  filter: none;
 }
 
 .center-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.reveal .compact-list {
+  font-size: 0.8em;
+}
+
+.reveal .compact-list ul {
+  margin-top: 0.3em;
+}
+
+.reveal .compact-list li {
+  margin-bottom: 0.5em;
+}
+
+.reveal .r-fit-text {
+  display: inline-block;
+  white-space: nowrap;
+  font-size: clamp(1em, 10vw, 8em) !important;
+  line-height: 2em !important;
 }
