@@ -894,7 +894,7 @@ https://avengineers.github.io/ESE-2025
 
 ---
 
-### See you on GitHub!
+### Some Links
 
-- [Avengineers](https://github.com/avengineers)
-- [Slide deck PDF](https://avengineers.github.io/ESE-2025/?print-pdf)
+- [We@GitHub](https://github.com/avengineers)
+- [Printable Slides](https://avengineers.github.io/ESE-2025/?print-pdf)
