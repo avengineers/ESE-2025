@@ -18,7 +18,13 @@ ESE Kongress 2025 in Sindelfingen
 
 Note:
 
-Hello everyone and welcome to my talk about CI/CD. Today I'd like to take you on a journey that I started more than 10 years ago. A journey that has led me through many different projects and companies. A journey that taught me that it's not just about automation, but also about the joy of developing software. (Anecdote: Back to the Future)
+Hello and welcome to our talk ...
+
+Today we'd like to take you on a journey that we started 20 years ago.
+
+A journey that has led us through many different projects and companies.
+
+A journey that taught us that it's not just about automation, but also about the joy of developing software.
 
 ---
 
@@ -42,23 +48,11 @@ Note:
 
 Okay, so who are we actually?
 
-Alexandru has nearly 20 years of experience in the automotive industry, specializing in safety-critical embedded software for braking systems.
+Alexandru and me have about 20 years of experience in the automotive industry.
 
-He's passionate about build systems and Software Product Line Engineering.
+We both are passionate about embedded software, build systems and Software Product Line Engineering.
 
-He currently works as a Senior Platform Engineer in the Rhine-Main Team at Marquardt GmbH.
-
-I myself have been working as a software developer for over 25 years.
-
-From Ada, Embedded C, C++, Perl, Tcl, Python, to developing dev tools and Jenkins pipelines - I've seen and done a lot.
-
-Currently, I work as a Platform Engineer in the Rhine-Main team at Marquardt GmbH.
-
-There it's all about Software Product Lines, internal developer platforms, automation, and CI/CD.
-
-He has extensive experience developing CI methods, tools, and pipelines.
-
-He currently works as a platform architect in the Rhine-Main Team at Marquardt GmbH, focusing on internal development platforms and Software Product Line Engineering.
+Currently we work as Senior Platform Engineers in the Rhine-Main Team at Marquardt GmbH.
 
 ---
 
@@ -70,7 +64,7 @@ Back to 2005 <!-- .element: class="fragment" data-fragment-index="1" -->
 
 Note:
 
-Where do we actually come from?
+So where do we actually come from?
 
 _click_
 
@@ -140,10 +134,6 @@ _click_
 
 Why? Don't break the build!
 
-_click_
-
-Sounded difficult, but we had learned at university: Nothing is too difficult for an engineer!
-
 --
 
 ### The Workflow
@@ -156,7 +146,7 @@ Sounded difficult, but we had learned at university: Nothing is too difficult fo
 
 Note:
 
-The starting point?
+How did the workflow look like back then?
 
 _click_
 
@@ -168,7 +158,7 @@ Sure, where do you test brakes? In the car.
 
 _click_
 
-Well, some SIL and HIL was done.
+No CI, only nightly builds to ensure that at least the code compiles.
 
 _click_
 
@@ -182,28 +172,11 @@ _click_
 
 But how is that supposed to work when the code is shared across all projects,
 
-all customers come around the corner with new requirements..
+all customers come around the corner with new requirements.
 
 _click_
 
 and several hundred developers worldwide are working on one codebase?
-
---
-
-<!-- .slide: data-visibility="hidden" -->
-
-### The Tools
-
-- MKS / PTC Integrity or "RCS on Steroids" <!-- .element: class="fragment" -->
-- GNU Make / MSYS in Java GUI on Windows 2000 <!-- .element: class="fragment" -->
-- Build Server on ESX / VMWare <!-- .element: class="fragment" -->
-  - Remote Builds <!-- .element: class="fragment" -->
-  - Nightly Builds <!-- .element: class="fragment" -->
-
-Note:
-
-- Users could trigger remote builds via GUI
-- Nightly builds ran automatically
 
 --
 
@@ -232,10 +205,6 @@ What does that mean exactly?
 3. No test automation
 4. No unit tests
 5. Developers are evil, they build bugs into the code.
-
-And how did you feel as a developer?
-
-_click_
 
 ---
 
