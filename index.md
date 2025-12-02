@@ -147,7 +147,7 @@ Sounded difficult, but we had learned at university: Nothing is too difficult fo
 
 --
 
-### Development Workflow
+### The Workflow
 
 - No unit tests <!-- .element: class="fragment" -->
 - No CI, only nightly builds <!-- .element: class="fragment" -->
@@ -258,9 +258,11 @@ The name came later, but there were plenty of ideas.
 
 --
 
-Changes until noon, then bug fixing and vehicle tests
+Changes until noon, then bug fixing and vehicle tests?
 
 ![](images/sad-developer.png) <!-- .element: width="80%"  class="fragment" data-fragment-index="1" -->
+
+No! <!-- .element: class="fragment" data-fragment-index="1" -->
 
 Note:
 
@@ -422,17 +424,6 @@ Sure, when you start with Jenkins, you begin with simple freestyle jobs.
 
 Just building.
 
---
-
-### Freestyle Faith
-
-<div style="position:relative; width:900px; height:600px; margin:0 auto;">
-    <img src="images/freestyle-faith.png" style="position:absolute;top:0;left:0;" />
-    <img src="images/freestyle-faith-2.png" style="position:absolute;top:0;left:350;" />
-</div>
-
-Note:
-
 - then suddenly a bit more happens
 - gradually tools need to be glued together
 - Connection to the SCM system
@@ -537,31 +528,43 @@ Quality Gates: Different test levels are just pytest marker selections, making t
 
 <div class="fragment">
 
-📦 **Scoop** - Windows package manager
+🔄 **Thin CI Pipeline** → Minimal orchestration
 
 </div>
 
 <div class="fragment">
 
-🏗️ **CMake + Ninja** - Fast (meta) build system
+🎯 **Quality Gate** → Selection of quality tests
 
 </div>
 
 <div class="fragment">
 
-🐍 **Python + Pytest** - Universal test framework
+🐍 **Python + Pytest** → Quality tests
 
 </div>
 
 <div class="fragment">
 
-🔄 **Thin (Jenkins/GitHub) Pipeline** - Minimal orchestration
+🔄 **Pypeline** → CI agnostic build pipeline
 
 </div>
 
 <div class="fragment">
 
-🎯 **Quality Gates** - Pytest marker selection
+📦 **Scoop** → Windows package manager
+
+</div>
+
+<div class="fragment">
+
+🏗️ **CMake + Ninja** → Fast (meta) build system
+
+</div>
+
+<div class="fragment">
+
+📚 **Sphinx + Sphinx Needs** → X-as-Code
 
 </div>
 
@@ -584,45 +587,6 @@ Quality gates are transparent: quick tests for PRs, full tests for main branch, 
 --
 
 ### Pipeline Happiness?
-
-- Checkout from repository<!-- .element: class="fragment" -->
-- Installation of all dependencies <!-- .element: class="fragment" -->
-- Execute selected tests as quality checks <!-- .element: class="fragment" -->
-- Archive results <!-- .element: class="fragment" -->
-
---
-
-### Jenkins
-
-<div style="font-size: xx-large">
-
-```Groovy
-...
-
-node() {
-    stage("Checkout Code") {
-        checkout scm
-    }
-
-    stage("Installation of Dependencies") {
-        bat "call build.bat -install -installOptional || exit /b 1"
-    }
-
-    stage ("Execute Tests") {
-        bat "call build.bat -selftests -marker 'build_debug or reports' || exit /b 1"
-    }
-
-    stage("Deploy Test Results") {
-        junit allowEmptyResults: false, keepLongStdio: false, testResults: "test/output/test-report.xml"
-    }
-
-    ...
-}
-
-...
-```
-
-</div>
 
 --
 
@@ -693,7 +657,7 @@ This transforms quality gates from opaque pipeline magic into transparent, repro
 
 ### Pytest: The Universal Test Framework
 
-<div style="font-size: large">
+<div style="font-size: xx-large">
 
 ```python
 class Test_MyVariant:
@@ -734,39 +698,99 @@ This works identically on developer machines and in CI - no magic, fully reprodu
 
 --
 
-### GitHub Actions
+### CI Agnostic Pipeline
+
+<div class="compact-list" style="font-size: xx-large">
+
+<div class="fragment">
+
+🎯 **Define Once, Run Anywhere** → Same pipeline on local/CI
+
+</div>
+
+<div class="fragment">
+
+📝 **YAML Config** → Declarative pipeline definition in `pypeline.yaml`
+
+</div>
+
+<div class="fragment">
+
+📝 **Pypeline** → Cross-platform pipeline runner (Python)
+
+</div>
+
+<div class="fragment">
+
+🐍 **Pipeline Steps** → Python classes, not CI DSL
+
+</div>
+
+</div>
+
+Note:
+
+A key enabler of our platform is pypeline - our own CI-agnostic pipeline framework.
+
+The core problem it solves: pipelines become tightly coupled to specific CI systems like Jenkins or GitHub Actions.
+
+Each CI system has its own syntax and limitations, making pipelines non-portable.
+
+Pypeline lets you define build/test/deploy pipelines in YAML once and run them identically everywhere - on local machines, Jenkins, GitHub Actions, anywhere.
+
+The key difference: pipeline steps are Python classes instead of platform-specific scripts.
+
+This ensures reproducible builds and eliminates "works locally, fails in CI" problems completely.
+
+It handles automatic bootstrapping of dependencies, virtual environments, and toolchains.
+
+All business logic lives in testable, maintainable Python code - no more complex Groovy DSL.
+
+--
+
+### Pypeline Configuration Example
 
 <div style="font-size: xx-large">
 
 ```yaml
----
-jobs:
-  test:
-    name: CI Gate
-    runs-on: windows-latest
+# pypeline.yaml - runs identically everywhere
+pipeline:
+  - step: CreateVEnv
+    module: pypeline.steps.create_venv
+    config:
+      python_executable: python311
 
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Installation of Dependencies
-        run: |
-          .\build.ps1 -install
-        shell: powershell
-      - name: Execute Tests
-        run: |
-          .\build.ps1 -selftests -marker "build_debug or reports"
-        shell: powershell
-      - name: Deploy Test Results
-        uses: EnricoMi/publish-unit-test-result-action/windows@v2
-        if: always()
-        with:
-          files: |
-            test/output/test-report.xml
+  - step: ScoopInstall
+    module: pypeline.steps.scoop_install
+
+  - step: GenerateEnvSetupScript
+    module: pypeline.steps.env_setup_script
+
+  - step: Build
+    run: cmake --build build --target all
 ```
 
 </div>
+
+Note:
+
+Here's a real example from our SPL Demo project.
+
+This is the actual pypeline.yaml that bootstraps our entire build environment.
+
+First step: CreateVEnv creates a Python virtual environment using our bootstrap script.
+
+Second step: ScoopInstall installs all required Windows toolchain components via Scoop package manager.
+
+Third step: GenerateEnvSetupScript creates environment setup for subsequent builds.
+
+Fourth step: CheckCIContext detects if we're running in CI or locally and adjusts behavior.
+
+Fifth step: CollectPRChanges gathers changed files for incremental testing.
+
+This exact YAML runs identically on developer laptops, in Jenkins, or in GitHub Actions.
+
+No platform-specific conditionals, no CI system lock-in.
 
 --
 
@@ -824,68 +848,31 @@ This transforms the platform from an ad-hoc engineering effort into a sustainabl
 
 --
 
-<!-- .slide: data-visibility="hidden" -->
-
-### SPLE Platform
-
-- VSCode plus CMake Tools
-- Configuration as Code
-- Easily extensible
-- SPLE enables modular SW development
-- Components as building blocks of the software
-- Separate repositories thanks to RTE interfaces
-- Custom configuration
-- Variant-independent unit tests
-- Separation of customer and developer view
-- Integration tests of components possible
-
---
-
-### Jenkins
-
-- does NOTHING different than the user locally <!-- .element: class="fragment" -->
-- Build is a one-liner <!-- .element: class="fragment" -->
-- Automatic job creation for branches and pull requests <!-- .element: class="fragment" -->
-- Few plugins to display results <!-- .element: class="fragment" -->
-- Supporting developers in analyzing errors <!-- .element: class="fragment" -->
-
-Note:
-
-- https://www.jenkins.io/doc/book/pipeline/pipeline-best-practices/
-- Minimal Jenkinsfile plus Organization Folder Plugin (Bitbucket, GitHub)
-- A single config file (config.xml of the org)
-
---
-
 ### Benefits for Everyone 🎉
 
-<div style="text-align: left; margin-left: 10%">
+--
 
-**👨‍💻 Developers:**
+### 👨‍💻 Developers
 
 - Same commands locally & CI
 - Easy debugging of failures
 - Fast feedback cycles
 
-<!-- .element: class="fragment" -->
+--
 
-**🔧 Platform Engineers:**
+### 🔧 Platform Engineers
 
 - Maintainable Python code
 - Reusable components across SPLs
 - Clear separation of concerns
 
-<!-- .element: class="fragment" -->
+--
 
-**👔 Management:**
+### 👔 Management
 
 - Fast, reliable quality feedback
 - Transparent quality criteria
 - Always releasable software state
-
-<!-- .element: class="fragment" -->
-
-</div>
 
 Note:
 
@@ -898,3 +885,11 @@ For platform engineers: We have maintainable Python code instead of complex Groo
 For management: Fast, reliable feedback on software quality with transparent criteria ensuring always releasable software.
 
 This transformation from Jenkinstein to a clean SPLE Platform has made everyone happier - hence our title: Less Pipelines, More Happy Developers!
+
+---
+
+### Thank You!
+
+---
+
+### Questions?
