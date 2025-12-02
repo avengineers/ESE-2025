@@ -588,7 +588,7 @@ Quality gates are transparent: quick tests for PRs, full tests for main branch, 
 
 --
 
-<div class="mermaid" style="width: 120%; height: auto; margin-left: -10%; ">
+<div class="mermaid" style="width: 110%; height: auto; margin-left: -5%; ">
 <pre>
 %%{ init: { 'theme': 'dark', 'themeVariables': { 'edgeLabelBackground': 'transparent', 'fontSize': '20px' } } }%%
 flowchart LR
@@ -896,5 +896,5 @@ https://avengineers.github.io/ESE-2025
 
 ### See you on GitHub!
 
-* [Avengineers](https://github.com/avengineers)
-* [Slide deck PDF](https://avengineers.github.io/ESE-2025/?print-pdf)
+- [Avengineers](https://github.com/avengineers)
+- [Slide deck PDF](https://avengineers.github.io/ESE-2025/?print-pdf)
