@@ -714,7 +714,7 @@ This works identically on developer machines and in CI - no magic, fully reprodu
 
 <div class="fragment">
 
-📝 **Pypeline** → Cross-platform pipeline runner (Python)
+🔨 **Pypeline** → Cross platform pipeline runner (Python)
 
 </div>
 
