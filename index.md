@@ -117,7 +117,6 @@ Actually paradise for SW developers.
 - Embedded C? We had that at university! <!-- .element: class="fragment" -->
 - It's your code, but don't you dare change anything! <!-- .element: class="fragment" -->
 - Always remember: don't break the build! <!-- .element: class="fragment" -->
-- Nothing is too difficult for an engineer! <!-- .element: class="fragment" -->
 
 Note:
 
@@ -314,7 +313,7 @@ And of course, if you have unit tests, you want to run them automatically.
 
 --
 
-### Continuous Integration sounds nice too.
+### Continuous Integration sounds nice!
 
 - Gerrit and Jenkins for tools <!-- .element: class="fragment" -->
 - Feature-based testing via commit comments <!-- .element: class="fragment" -->
@@ -404,16 +403,6 @@ At first, everything went well ...
 
 --
 
-### The Reality
-
-- CI for tools <!-- .element: class="fragment" -->
-- CI for target builds (Ninja) <!-- .element: class="fragment" -->
-- Nightly target builds (Eclipse + GNU Make) <!-- .element: class="fragment" -->
-- Nightly unit tests (GNU Make) <!-- .element: class="fragment" -->
-- Jenkins pipelines as orchestration layer <!-- .element: class="fragment" -->
-
---
-
 ### Freestyle Happiness
 
 ![](images/freestyle-happiness.png) <!-- .element width="80%" -->
@@ -437,6 +426,15 @@ Just building.
 
 --
 
+### The Reality
+
+- A pipeline for target builds (Ninja) <!-- .element: class="fragment" -->
+- A pipeline for nightly builds (Eclipse + GNU Make) <!-- .element: class="fragment" -->
+- A pipeline for nightly unit tests (Perl + GNU Make) <!-- .element: class="fragment" -->
+- Many more pipelines (Matlab, Polyspace, QA-C, ...) <!-- .element: class="fragment" -->
+
+--
+
 ![](images/pipeline-lotr.png) <!-- .element width="65%" -->
 
 Note:
@@ -446,7 +444,7 @@ Higher, faster, further: One pipeline to rule them all.
 
 ### Law of the Instrument
 
-- Pipeline as replacement build system <!-- .element: class="fragment" -->
+- Pipeline to orchestrate and integrate tools <!-- .element: class="fragment" -->
 - Build logic in pipelines (10,000s of lines of Groovy DSL) <!-- .element: class="fragment" -->
 - Sufficient? No! Shared libraries and plugins still exist ... <!-- .element: class="fragment" -->
 - Non-reproducible CI results <!-- .element: class="fragment" -->
@@ -888,8 +886,15 @@ This transformation from Jenkinstein to a clean SPLE Platform has made everyone 
 
 ---
 
-### Thank You!
+### Questions?
+
+![](images/qr-presentation-link.png) <!-- .element: width="40%" -->
+
+https://avengineers.github.io/ESE-2025
 
 ---
 
-### Questions?
+### See you on GitHub!
+
+* [Avengineers](https://github.com/avengineers)
+* [Slide deck PDF](https://avengineers.github.io/ESE-2025/?print-pdf)
