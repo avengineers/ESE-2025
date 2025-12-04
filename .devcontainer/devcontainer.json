@@ -51,7 +51,5 @@
     "source=${localEnv:HOME}/.ssh,target=/home/node/.ssh,type=bind,consistency=cached"
   ],
 
-  "postCreateCommand": "bash scripts/postCreate.sh",
-
-  "remoteUser": "node"
+  "postCreateCommand": "bash scripts/postCreate.sh"
 }
