@@ -11,17 +11,16 @@ echo "Running post-create setup..."
 echo "Initializing git submodules..."
 git submodule update --init --recursive
 
-# Install Claude Code globally
+# Install Claude Code using native installer
 echo "Installing Claude Code CLI..."
-npm install -g @anthropic-ai/claude-code
+curl -fsSL https://claude.ai/install.sh | bash
+
+# Update npm to latest version
+echo "Updating npm..."
+npm install -g npm@latest
 
 # Install npm dependencies
 echo "Installing npm dependencies..."
 npm install
-
-# Fix SSH permissions
-echo "Setting SSH permissions..."
-chmod 700 ~/.ssh 2>/dev/null || true
-chmod 600 ~/.ssh/* 2>/dev/null || true
 
 echo "Post-create setup complete!"

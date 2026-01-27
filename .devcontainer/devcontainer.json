@@ -33,7 +33,9 @@
         },
         "files.associations": {
           "*.md": "markdown"
-        }
+        },
+        "remote.SSH.enableAgentForwarding": true,
+        "dev.containers.copyGitConfig": true
       }
     }
   },
@@ -46,10 +48,6 @@
       "onAutoForward": "notify"
     }
   },
-
-  "mounts": [
-    "source=${localEnv:HOME}/.ssh,target=/home/node/.ssh,type=bind,consistency=cached"
-  ],
 
   "postCreateCommand": "bash scripts/postCreate.sh"
 }

@@ -1,0 +1,14 @@
+{
+  "cleanupPeriodDays": 30,
+  "permissions": {
+    "allow": ["Bash", "Read", "Edit"],
+    "deny": [
+      "Bash(rm -rf /*)",
+      "Bash(rm -rf ~/*)",
+      "Bash(sudo rm:*)",
+      "Bash(dd:*)",
+      "Bash(mkfs:*)",
+      "Bash(format:*)"
+    ]
+  }
+}
