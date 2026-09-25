@@ -73,7 +73,7 @@ bat "call build.bat -selftests -marker 'build_debug or reports' || exit /b 1"
 
 ## Key Files to Reference
 
-- **`CLAUDE.md`**: Comprehensive project documentation including full context, architecture principles, historical background
+- **`AGENTS.md`**: Comprehensive project documentation including full context, architecture principles, historical background
 - **`docs/article/index.md`**: Conference proceedings article with technical depth and Mermaid diagrams
 - **`index.md`**: The actual presentation slides (authoritative for current content)
 

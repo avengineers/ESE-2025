@@ -1,12 +1,19 @@
 {
    "recommendations": [
-      "sandcastle.vscode-open",
-      "mushan.vscode-paste-image",
-      "felipecaputo.git-project-manager",
-      "mhutchie.git-graph",
+      "anthropic.claude-code",
+      "evilz.vscode-reveal",
+      "yzhang.markdown-all-in-one",
+      "DavidAnson.vscode-markdownlint",
+      "bierner.markdown-mermaid",
+      "esbenp.prettier-vscode",
       "waderyan.gitblame",
       "streetsidesoftware.code-spell-checker",
       "streetsidesoftware.code-spell-checker-german",
-      "davidanson.vscode-markdownlint"
+      "mushan.vscode-paste-image",
+      "sandcastle.vscode-open",
+      "mhutchie.git-graph",
+      "felipecaputo.git-project-manager",
+      "shd101wyy.markdown-preview-enhanced",
+      "ms-vscode-remote.remote-containers"
    ]
 }

@@ -1,6 +1,11 @@
 {
   "name": "Reveal.js Presentation",
-  "image": "mcr.microsoft.com/devcontainers/javascript-node:1-20-bookworm",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "options": ["--network=host"]
+  },
+  "runArgs": ["--network=host"],
+  "initializeCommand": "mkdir -p .devcontainer/certs && cp /usr/local/share/ca-certificates/*.crt .devcontainer/certs/ 2>/dev/null; true",
 
   "features": {
     "ghcr.io/devcontainers/features/git:1": {},
@@ -22,7 +27,9 @@
         "mushan.vscode-paste-image",
         "sandcastle.vscode-open",
         "mhutchie.git-graph",
-        "felipecaputo.git-project-manager"
+        "felipecaputo.git-project-manager",
+        "shd101wyy.markdown-preview-enhanced",
+        "ms-vscode-remote.remote-containers"
       ],
       "settings": {
         "editor.formatOnSave": true,
@@ -37,15 +44,6 @@
         "remote.SSH.enableAgentForwarding": true,
         "dev.containers.copyGitConfig": true
       }
-    }
-  },
-
-  "forwardPorts": [3000],
-
-  "portsAttributes": {
-    "3000": {
-      "label": "Web Server",
-      "onAutoForward": "notify"
     }
   },
 
